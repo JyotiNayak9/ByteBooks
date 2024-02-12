@@ -10,23 +10,29 @@
 </head>
 <body>
     <div class="container">
-        <form action="register.php" method="POST">
+        <form action="register.php" method="POST" id="registerForm">
             <div class="form-group">
-                <input type="text" class="form-control"name="fullname" placeholder="Full Name"> <br>
+                <input type="text" class="form-control"name="full_name" id="full_name" placeholder="Full Name"> <br>
+                <span class="error" id="fullnameError"></span>
 </div>
 <div class="form-group">
-                <input type="text" class="form-control" name="email" placeholder="Email"><br>
+                <input type="text" class="form-control" name="email" id="email" placeholder="Email"><br>
+                <span class="error" id="emailError"></span>
 </div>
 <div class="form-group">
-                <input type="text" class="form-control" name="password" class="form control" placeholder="Password"><br>
+                <input type="text" class="form-control" name="password" class="form control" id="password" placeholder="Password"><br>
+                <span class="error" id="passwordError"></span>
 </div>
 <div class="form-group">
-                <input type="text" class="form-control" name="repeat_password" placeholder="Repeat Password"><br>
+                <input type="text" class="form-control" name="repeat_password" id="repeat_password" placeholder="Repeat Password"><br>
+                <span class="error" id="confirmPasswordError"></span>
 </div>
 <div class="form-btn">
     <input type="submit" class="btn btn-primary" value="Register" name="submit">
 </div>
 </form>
+    </div>
+<script src="register.js"></script>
 </body>
 </html>
 
@@ -35,15 +41,14 @@ include("db.php");
 session_start();
 
 if($_SERVER["REQUEST_METHOD"]=="POST"){
-    $id=$_POST['id'];
-    $name=$_POST['full_name'];
+
+    $full_name=$_POST['full_name'];
     $email=$_POST['email'];
     $password=$_POST['password'];
     
 
-    $sql="INSERT INTO users(id,full_name,email,password) VALUES('id', '$name','$email','$password')";
+    $sql="INSERT INTO users(full_name,email,password) VALUES('$full_name','$email','$password')";
     mysqli_query($conn,$sql);
     $_SESSION['userEmail']="$email";
-    
 }
 ?>

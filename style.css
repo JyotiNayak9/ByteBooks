@@ -5,8 +5,11 @@ body{
     max-width: 600px;
     margin: 0 auto;
     padding: 50px;
-    box-shadow: rgba(100, 100, 0.2) 0px 7px 29px 0px;
+    box-shadow: rgba(100, 100, 0.2) 0px 7px 19px 0px;
 }
 .form-group{
     margin-bottom: 30px;
 }
+.error {
+    color: red;
+  }

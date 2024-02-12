@@ -23,3 +23,27 @@
 </form>
 </body>
 </html>
+<?php
+    include_once "db.php";
+    if($_SERVER['REQUEST_METHOD']==="POST"){
+        $email=$_POST['email'];
+        $password = $_POST['password']; 
+
+        $sql = "SELECT * FROM users WHERE email='$email'";
+        $result = mysqli_query($conn, $sql);
+        $data = mysqli_fetch_assoc($result);
+    
+    
+        if ($data) {
+            if ($data['password'] == $password) {
+                $_SESSION['email'] = $data['email'];
+                // header('location:index.php');
+                echo"<script>alert('Login successful')</script>";
+                exit();
+            } else {
+                echo "<script>alert('Password is incorrect')</script>";
+                header('location:login.php');   
+            }
+        }
+    }
+?>
