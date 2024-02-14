@@ -14,29 +14,9 @@
 </head>
 <body>
 <header>
-  <nav class="navbar">
-    <div class="logo"><h2>ByteBooks</h2></div>              
-      <div class="menu">
-        <ul>
-            <li><a href="index.html">Home</a></li>
-            <!-- <li class="dropdown"><a href="#" class="dropbtn">Categories</a> -->
-              <li class="dropdownn">
-                <a href="#" class="dropbtn">Categories</a>
-                <div class="dropdown-content">
-                    <a class="catr" href="category1.html">Category 1</a>
-                    <a class="catr" href="category2.html">Category 2</a>
-                    <a class="catr" href="category3.html">Category 3</a>
-                </div>
-            </li>
-            <li><a href="topproducts.html">Contact Us</a></li>
-            <li><a href="hotproduct.html">About</a></li>
-        </ul>
-        <div class="search">
-          <input class="srch" type="search" name="" placeholder="Type to search ">
-          <i class="fa-solid fa-magnifying-glass"></i>
-      </div>
-      </div>
-  </nav>
+  <?php
+include 'navbar.php';
+  ?>
 
   <div class="main-header">
     <div class="header">
@@ -83,24 +63,16 @@
     </div>
     <div class="col">
         <h4>About</h4>
-        <a href="index.html">Home</a>
+        <a href="index.php">Home</a>
         <a href="about1.html">About us</a>
-        <a href="topproducts.html">E-library</a>
-        <a href="hotproduct.html">Premimun collection</a>
+        <a href="E-library.php">E-library</a>
+        <a href="premium.php">Premimun collection</a>
     </div>
     <div class="col">
         <h4>My account</h4>
-        <a href="#">Sign in</a>
-        <a href="#"></a>
-        <a href="#">Help</a>
-    </div>
-    <div class="follow">
-        <h4>Follow us</h4>
-        <div class="i">
-            <a href="#"><i class="fa-brands fa-facebook fa-1x"></i></a>
-            <a href="#"> <i class="fa-brands fa-instagram fa-1x"></i></a>
-            <a href="#"> <i class="fa-brands fa-twitter fa-1x"></i></a>
-            <a href="#"><i class="fa-brands fa-pinterest" ></i></a>
+        <a href="register.php">Sign in</a>
+        <a href="login.php">Login</a>
+        <a href="#">View Profile</a>
     </div>
 </footer>
 </body>

@@ -9,8 +9,11 @@
     <link rel="stylesheet" href="style.css">
 
 </head>
+<div class="blur-bg"></div>
 <body>
+
     <div class="container">
+        <h2>Register Here</h2>
         <form action="register.php" method="POST" id="registerForm" onsubmit="return validateForm()" >
             <div class="form-group">
                 <input type="text" class="form-control"name="full_name" id="full_name" placeholder="Full Name" > <br>
@@ -21,17 +24,17 @@
                 <span class="error" id="emailError"></span>
 </div>
 <div class="form-group">
-                <input type="text" class="form-control" name="password" class="form control" id="password" placeholder="Password"><br>
+                <input type="password" class="form-control" name="password" class="form control" id="password" placeholder="Password"><br>
                 <span class="error" id="passwordError"></span>
 </div>
 <div class="form-group">
-                <input type="text" class="form-control" name="confirm_password" id="confirm_password" placeholder="Repeat Password" ><br>
+                <input type="password" class="form-control" name="confirm_password" id="confirm_password" placeholder="Repeat Password" ><br>
                 <span class="error" id="confirmPasswordError"></span>
 </div>
 <div class="form-btn">
-    <input type="submit" class="btn btn-primary" value="Register" name="submit"><br><br>
+    <input type="submit" class="btn btn-primary" value="Register" name="submit"><br>
 </div>
-<span>Already registered?<a href="login.php">Login here</a></span>
+<p>Already registered?<a href="login.php">Login here</a></p>
 <script src="reg.js"></script>
 </form>
     </div>

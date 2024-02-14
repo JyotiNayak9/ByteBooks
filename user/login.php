@@ -50,8 +50,10 @@
     }
 }
 ?>
+<div class="blur-bg"></div>
 <body>
     <div class="container">
+        <h2>Login Here</h2>
     <?php
         if($message != '')
         {
@@ -66,9 +68,9 @@
                 <input type="text" class="form-control" name="password" class="form control" placeholder="Password"><br>
 </div>
 <div class="form-btn">
-    <input type="submit" class="btn btn-primary" value="Login" name="submit"><br><br>
+    <input type="submit" class="btn btn-primary" value="Login" name="submit"><br>
 </div>
-<span>Not registered yet?<a href="register.php">Registered Here</a></span>
+<span>Not registered yet?<a href="register.php">Register Here</a></span>
 </form>
 </body>
 </html>
