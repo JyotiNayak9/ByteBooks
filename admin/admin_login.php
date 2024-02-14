@@ -6,7 +6,6 @@ $message = '';
 
 if($_SERVER["REQUEST_METHOD"]==="POST"){
     
-    $formdata = array();
     $admin_email=$_POST['admin_email'];
     $admin_password = $_POST['admin_password'];
     if(empty($_POST["admin_email"]))
@@ -33,8 +32,10 @@ if($_SERVER["REQUEST_METHOD"]==="POST"){
         
             if ($data) {
                 if ($data['password'] == $admin_password) {
-                    $_SESSION['admin_email'] = $admin_email;
+                    $_SESSION['admin_id'] = $data['admin_id'];
+                  
                     header('location:admin_index.php');
+                    exit;
                 } else {
                     $message = '<li>Wrong Password</li>';
                 }
@@ -43,7 +44,12 @@ if($_SERVER["REQUEST_METHOD"]==="POST"){
             }
         }
     }
-?>
+    
+// if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) {
+//     header("location: admin_index.php");
+//     exit;
+// }
+?> 
 
 <!DOCTYPE html>
 <html lang="en">
