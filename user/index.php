@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,42 +16,109 @@
 <body>
 <header>
   <?php
-include 'navbar.php';
+  include 'function.php';
   ?>
+<nav class="navbar">
+    <div class="logo"><h2>ByteBooks</h2></div>              
+      <div class="menu">
+        <ul>
+            <li><a href="index.php">Home</a></li>
+              <li class="dropdownn">
+                <a href="#" class="dropbtn">Categories</a>
+                <div class="dropdown-content">
+                    <a class="catr" href="category1.html">Category 1</a>
+                    <a class="catr" href="category2.html">Category 2</a>
+                    <a class="catr" href="category3.html">Category 3</a>
+                </div>
+            </li>
+            <li><a href="#">ContactUs</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="user_dashboard.php"><i class="fa-solid fa-user"></i></a></li>
+                </div>
+            </li>
+          
+        </ul>
+        <div class="search">
+          <input class="srch" type="search" name="" placeholder="Type to search ">
+          <i class="fa-solid fa-magnifying-glass"></i>
+      </div>
+      </div>
+  </nav>
 
   <div class="main-header">
     <div class="header">
         <h5> Bytebooks Library</h5>
         <h2> For All Your Reading Needs </h2>
-        <p> Hello Jyoti, I am prerana kafle, recently studying BCA in 4th semester. So,
-            I'm studying BCA but not interested in coding heheheh. </p>
+        <p> Join us as we embark on a literary adventure together!With convenient access from anywhere, at any time, you can explore our extensive catalog, borrow books, and dive into captivating stories right from the comfort of your home.</p>
+      
         <a href="login.php" class="btn"> Login </a>
-
         <a href="register.php" class="btn"> Sign up now </a>
-        
   </div>
   
   </div>
 </header>
+
+
+<section class="banner">
+<h4>Offer!!</h4>
+<h2>Upto <span>5 % Off</span> - On Premium subscription</h2>
+<button>Subscribe Now</button>
+</section>
 <section class="Categories">
   <div class="cat-row">
     <div class="cat-header">
-      <h2>Books categories</h2>
-      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem culpa, quidem magni quasi deleniti modi, odit nisi molestias architecto eius reiciendis porro laudantium dolore dolorem. Quam eum ex consectetur sunt.</p>
+      <h2>ByteBooks Features</h2>
+      <!-- <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem culpa, quidem magni quasi deleniti modi, odit nisi molestias architecto eius reiciendis porro laudantium dolore dolorem. Quam eum ex consectetur sunt.</p> -->
     </div>
-
+<div class="cat1">
     <div class="cat-books">
       <div class="card" style="width: 18rem;">
         <img src="../images/book.jpg" class="card-img-top" alt="...">
         <div class="card-body">
-          <h5 class="card-title">Card title</h5>
-          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-          <a href="#" class="btn btn-primary" >Go somewhere</a>
+          <h5 class="card-title">E-library</h5>
+          <p class="card-text"></p>
+          <a href="#" class="btn btn-primary" >Explore more</a>
         </div>
       </div>
+
+      <div class="card" style="width: 18rem;">
+        <img src="../images/notes.jpg" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">Premium books</h5>
+          <!-- <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> -->
+          <a href="#" class="btn btn-primary" >Explore more</a>
+        </div>
+      </div>
+      <div class="card" style="width: 18rem;">
+        <img src="../images/book1.jpg" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">Card title</h5>
+          <!-- <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> -->
+          <a href="#" class="btn btn-primary" >Explore more</a>
+        </div>
+        </div>      
+    </div>
     </div>
   </div>
 </section>
+<section class="review">
+        <h2>User review</h2>
+        <form class="rev" action="review.php" method="post">
+            <div class="formgroup">
+                <label>Username</label>
+                <input type="text" name="username" class="formcont">
+            </div>
+            <div class="formgroup">
+                <label>Contact Email</label>
+                <input type="text" name="email" class="formcont">
+            </div>
+            <div class="formgroup">
+                <label>Comments</label>
+                <textarea name="comment" class="formcont"></textarea>
+            </div>
+            <button type="submit" class="btn" value="submit">Submit</button>               
+        </form>
+    </section>
   <footer>
     <div class="col">
        
@@ -75,5 +143,6 @@ include 'navbar.php';
         <a href="#">View Profile</a>
     </div>
 </footer>
+
 </body>
 </html>

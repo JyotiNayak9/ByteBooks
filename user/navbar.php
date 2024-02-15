@@ -12,11 +12,12 @@
 <script src="https://kit.fontawesome.com/17ed295021.js" crossorigin="anonymous"></script>
 </head>
 <body>
+
 <nav class="navbar">
     <div class="logo"><h2>ByteBooks</h2></div>              
       <div class="menu">
         <ul>
-            <li><a href="index.html">Home</a></li>
+            <li><a href="index.php">Home</a></li>
               <li class="dropdownn">
                 <a href="#" class="dropbtn">Categories</a>
                 <div class="dropdown-content">
@@ -25,8 +26,12 @@
                     <a class="catr" href="category3.html">Category 3</a>
                 </div>
             </li>
-            <li><a href="#">Contact Us</a></li>
+            <li><a href="#">ContactUs</a></li>
             <li><a href="#">About</a></li>
+            <li><a href="user_dashboard"><i class="fa-solid fa-user"></i></a></li>
+                </div>
+            </li>
+          
         </ul>
         <div class="search">
           <input class="srch" type="search" name="" placeholder="Type to search ">

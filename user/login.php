@@ -10,6 +10,7 @@
 </head>
 <?php
     include_once "../db.php";
+    session_start();
     $message = '';
     if($_SERVER['REQUEST_METHOD']==="POST"){
         $email=$_POST['email'];
@@ -39,8 +40,8 @@
     
         if ($data) {
             if ($data['password'] == $password) {
-                $_SESSION['email'] = $data['email'];
-                // header('location:index.php');
+                $_SESSION['user_email'] = $data['email'];
+                header('location:index.php');
                 echo"<script>alert('Login successful')</script>";
                 exit();
             } else {

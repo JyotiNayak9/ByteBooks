@@ -46,14 +46,13 @@
 include("../db.php");
 session_start();
  $message = '';
-if($_SERVER["REQUEST_METHOD"]=="POST"){
+if($_SERVER["REQUEST_METHOD"]==="POST"){
 
     $full_name=$_POST['full_name'];
     $email=$_POST['email'];
     $password=$_POST['password'];
-
     $sql="INSERT INTO users(full_name,email,password) VALUES('$full_name','$email','$password')";
     mysqli_query($conn,$sql);
-    $_SESSION['userEmail']="$email";
     echo '<script>alert("User registered successfully")</script>';
+    header('location:login.php');
 }
