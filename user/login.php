@@ -41,7 +41,8 @@
         if ($data) {
             if ($data['password'] == $password) {
                 $_SESSION['user_email'] = $data['email'];
-                header('location:index.php');
+                $_SESSION['user_name'] = $data['full_name'];
+                header('location:user_index.php');
                 echo"<script>alert('Login successful')</script>";
                 exit();
             } else {

@@ -13,7 +13,7 @@
     text-align: center;
     width: 100%;
     height: 80px;
-    background: rgb(180, 128, 128);
+    background: #593021;
 }
 
 .navbar h2{
@@ -101,7 +101,7 @@
     position: relative;
     right: 53px;
     top: 2px;
-    background-color: rgb(180, 128, 128);
+    background-color: #593021;
     padding: 12px;
     border-radius: 30px;
 }
@@ -123,33 +123,33 @@ header{
 }
 .main-header h5{
     font-size: 30px;
-    color: rgb(107, 56, 56);
+    color: #593021;
 }
 .main-header h2{
     font-size: 35px;
     font-weight: 500;
     margin-top: 10px;
     margin-bottom: 20px;
-    color: rgb(84, 39, 39);
+    color: #593021;
 }
 .main-header p{
     margin-bottom: 60px;
     font-weight: 400;
 }
 .header .btn{
-    background-color: rgb(107, 56, 56);
+    background-color: #593021;
     padding: 12px 25px;
     color: white;
     border-radius: 30px;
     font-size: 18px;
     margin-right: 20px;
     transition: all .5s;
-    border: 1px solid rgb(107, 56, 56);
+    border: 1px solid #593021;
 }
 
 .header .btn:hover{
     background:#fff;
-    color: rgb(107, 56, 56);
+    color: #86522D;
 }
 .cat-header{
     text-align: center;
@@ -181,8 +181,8 @@ section{
 }
 
 .card-body .btn-primary{
-    background: rgb(107, 56, 56);
-    border: 1px solid rgb(107, 56, 56);
+    background: #593021;
+    border: 1px solid #593021;
 }
 /* .cat1{
     display: flex;

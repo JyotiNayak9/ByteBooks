@@ -21,7 +21,7 @@
         .navbar {
             justify-content: space-between;
             width: 100%;
-            position: ;
+            /* position: fixed; */
         }
         .navbar h2{
           font-family:"protest riot";
@@ -39,9 +39,9 @@ if(is_admin_login())
        </nav>
        <nav class="nav flex-column">
        <a class="nav-link active" aria-current="page" href="profile.php">Profile</a>
-       <a class="nav-link" href="category.php">Categories</a>
+       <a class="nav-link" href="admin_dashboard.php">Dashboard</a>
        <a class="nav-link" href="logout.php">Log out</a>
-  <a class="nav-link disabled" aria-disabled="true">Disabled</a>
+  <!-- <a class="nav-link disabled" aria-disabled="true">Disabled</a> -->
 </nav>
 </body>
  <?php

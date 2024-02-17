@@ -6,4 +6,3 @@ if(!is_admin_login()){
     header('location:admin_login.php');
 }
 include 'header.php';
-// include 'side.php';
