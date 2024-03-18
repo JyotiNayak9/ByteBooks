@@ -5,34 +5,59 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
-        .form{
+        .show{
             margin:20px;
             margin-left:220px;
-            position: absolute;
+            /* position: absolute; */
         }
     </style>
 </head>
-<body>
-    
-</body>
-</html>
 <?php
-include 'header.php';
+include '../db.php';
+include 'function.php';
+// include 'fns.php';
+
+if(!is_admin_login()){
+    header('location:admin_login.php');
+}
+	// session_start();
+	$name = "";
+	$email = "";
+	$query = "select * from users";
 
 ?>
-<form>
-  <div class="mb-3">
-    <label for="exampleInputEmail1" class="form-label">Email address</label>
-    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-    <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
-  </div>
-  <div class="mb-3">
-    <label for="exampleInputPassword1" class="form-label">Password</label>
-    <input type="password" class="form-control" id="exampleInputPassword1">
-  </div>
-  <div class="mb-3 form-check">
-    <input type="checkbox" class="form-check-input" id="exampleCheck1">
-    <label class="form-check-label" for="exampleCheck1">Check me out</label>
-  </div>
-  <button type="submit" class="btn btn-primary">Submit</button>
-</form>
+<body>
+<?php
+include 'header.php';
+?>
+<div class="show">
+<h4>Registered Users Detail</h4><br>
+<div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+        <form>
+            <table class="table-bordered" width="900px" style="text-align: center">
+                <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                </tr>
+        
+            <?php
+                $query_run = mysqli_query($conn,$query);
+                while ($row = mysqli_fetch_assoc($query_run)){
+                    $name = $row['full_name'];
+                    $email = $row['email'];
+            ?>
+                <tr>
+                    <td><?php echo $name;?></td>
+                    <td><?php echo $email;?></td>
+                </tr>
+            <?php
+                }
+            ?>	
+        </table>
+        </form>
+</div>
+</div>
+</body>
+</html>

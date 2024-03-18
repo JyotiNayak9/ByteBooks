@@ -40,7 +40,7 @@
     
         if ($data) {
             if ($data['password'] == $password) {
-                $_SESSION['user_email'] = $data['email'];
+                $_SESSION['email'] = $data['email'];
                 $_SESSION['user_name'] = $data['full_name'];
                 header('location:user_index.php');
                 echo"<script>alert('Login successful')</script>";
@@ -48,6 +48,9 @@
             } else {
                 $message .= '<li>Incorrect password</li>';   
             }
+        }
+        else{
+            $message .= '<li>User not found</li>';
         }
     }
 }

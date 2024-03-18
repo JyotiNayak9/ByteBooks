@@ -35,7 +35,7 @@ flex-direction: row;
 <?php
 include '../db.php';
 include 'function.php';
-include 'fns.php';
+// include 'fns.php';
 
 if(!is_admin_login()){
     header('location:admin_login.php');
@@ -52,7 +52,7 @@ include 'header.php';
     Manage Books
   </button>
   <ul class="dropdown-menu">
-    <li><a class="dropdown-item" href="#">Add book</a></li>
+    <li><a class="dropdown-item" href="add_book.php">Add book</a></li>
     <li><a class="dropdown-item" href="#">Update book</a></li>
     <li><a class="dropdown-item" href="#">Delete</a></li>
   </ul>
@@ -62,7 +62,7 @@ include 'header.php';
     Category
   </button>
   <ul class="dropdown-menu">
-    <li><a class="dropdown-item" href="#">Add category</a></li>
+    <li><a class="dropdown-item" href="add_cat.php">Add category</a></li>
     <li><a class="dropdown-item" href="#">Remove category</a></li>
 
   </ul>
@@ -72,8 +72,8 @@ include 'header.php';
 Author
   </button>
   <ul class="dropdown-menu">
-    <li><a class="dropdown-item" href="#">Add Author</a></li>
-    <li><a class="dropdown-item" href="#">Remove Author</a></li>
+    <li><a class="dropdown-item" href="add_author.php">Add Author</a></li>
+    <li><a class="dropdown-item" href="">Remove Author</a></li>
   </ul>
 </div>
   </div>
@@ -82,7 +82,7 @@ Author
   <div class="card-body">
     <h5 class="card-title">Registered Users</h5>
     <p class="card-text">No. of total Users:<?php echo get_user_count(); ?></p>
-    <a href="#" class="btn btn-primary">View Registered Users</a>
+    <a href="reg_user.php" class="btn btn-primary">View Registered Users</a>
   </div>
   </div>
     <div class="card" style="width: 18rem;">
