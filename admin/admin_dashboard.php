@@ -18,13 +18,12 @@
         }
         .b2{
           display: flex;
-flex-wrap: wrap;
-flex-direction: row; 
+          flex-wrap: wrap;
+          flex-direction: row; 
 /* justify-content: center; */
         }
         .card{
-          margin: 30px;
-          
+          margin: 30px;      
         }
     </style>
 </head>
@@ -76,6 +75,11 @@ Author
     <li><a class="dropdown-item" href="">Remove Author</a></li>
   </ul>
 </div>
+<div class="dropdown">
+  <a class="btn btn-secondary" type="button" href="issue_book.php" >
+Issue book
+</a>
+</div>
   </div>
   <div class="b2">
   <div class="card" style="width: 18rem;">
@@ -88,15 +92,15 @@ Author
     <div class="card" style="width: 18rem;">
   <div class="card-body">
     <h5 class="card-title">Registered Books</h5>
-    <p class="card-text">total no of registered books:</p>
-    <a href="#" class="btn btn-primary">View Books</a>
+    <p class="card-text">total no of registered books:<?php echo get_book_count(); ?></p>
+    <a href="reg_books.php" class="btn btn-primary">View Books</a>
   </div>
 </div>
 <div class="card" style="width: 18rem;">
   <div class="card-body">
     <h5 class="card-title">Registered category</h5>
-    <p class="card-text">Total no. of categories:</p>
-    <a href="#" class="btn btn-primary">View categories</a>
+    <p class="card-text">Total no. of categories:<?php echo get_category_count(); ?></p>
+    <a href="reg_cat.php" class="btn btn-primary">View categories</a>
   </div>
 </div>
 <div class="b2">
@@ -104,15 +108,15 @@ Author
 <div class="card" style="width: 18rem;">
   <div class="card-body">
     <h5 class="card-title">Registered Authors</h5>
-    <p class="card-text">Total no. of registered authors:</p>
-    <a href="#" class="btn btn-primary">View Authors</a>
+    <p class="card-text">Total no. of registered authors:<?php echo get_author_count(); ?></p>
+    <a href="reg_author.php " class="btn btn-primary">View Authors</a>
   </div>
 </div>
 <div class="card" style="width: 18rem;">
   <div class="card-body">
     <h5 class="card-title">Issued Books</h5>
     <p class="card-text">Total no. of books issued:</p>
-    <a href="#" class="btn btn-primary">View Issued books</a>
+    <a href="view_issued_books.php" class="btn btn-primary">View Issued books</a>
   </div>
 </div>
   </div>

@@ -19,16 +19,25 @@
 </head>
 <?php
 include '../db.php';
-include 'user_dashboard.php';
+include 'function.php';
+
+
+if(!is_admin_login()){
+    header('location:admin_login.php');
+}
+?>
+<body>
+<?php
+include 'header.php';
 ?>
 
 <body>
   <?php
-  $query = "SELECT *FROM users WHERE email ='" . $_SESSION['email'] . "' ";
+  $query = "SELECT * FROM admin WHERE admin_id ='" . $_SESSION['admin_id'] . "' ";
   $result = mysqli_query($conn, $query);
   while ($row = mysqli_fetch_assoc($result)) {
-    $name = $row['full_name'];
-    $email = $row['email'];
+    $admin_name = $row['admin_name'];
+    $admin_email = $row['admin_email'];
     // $mobile = $row['mobile'];
     // $address = $row['address'];
   }
@@ -43,14 +52,14 @@ include 'user_dashboard.php';
     <div class="row">
 			<div class="col-md-4"></div>
         <div class="col-md-4">
-      <form action="update.php" method="post">
+      <form action="update_profile.php" method="post">
         <div class="form-group">
           <label for="name">Name:</label>
-          <input type="text" class="form-control" value="<?php echo $name; ?>" name="name">
+          <input type="text" class="form-control" value="<?php echo $admin_name; ?>" name="admin_name">
         </div>
         <div class="form-group">
           <label for="email">Email:</label>
-          <input type="text" value="<?php echo $email; ?>" class="form-control" name="email">
+          <input type="text" value="<?php echo $admin_email; ?>" class="form-control" name="admin_email">
         </div>
         <!-- <div class="form-group">
             <label for="mobile">Mobile:</label>

@@ -25,7 +25,7 @@ if($_SERVER["REQUEST_METHOD"]==="POST"){
    
     if($message == ''){
         
-            $sql = "SELECT * FROM admin WHERE email='$admin_email'";
+            $sql = "SELECT * FROM admin WHERE admin_email='$admin_email'";
             $result = mysqli_query($conn, $sql);
             $data = mysqli_fetch_assoc($result);
         
@@ -33,6 +33,7 @@ if($_SERVER["REQUEST_METHOD"]==="POST"){
             if ($data) {
                 if ($data['password'] == $admin_password) {
                     $_SESSION['admin_id'] = $data['admin_id'];
+                    $_SESSION['admin_email'] = $data['admin_email'];
                   
                     header('location:admin_index.php');
                     exit;

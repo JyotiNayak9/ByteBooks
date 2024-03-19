@@ -89,7 +89,7 @@ Author
 <?php
 	if(isset($_POST['add_author']))
 	{
-		$query = "insert into author values(null,'$_POST[author_name]')";
+		$query = "insert into author (author_name) values('$_POST[author_name]')";
 		$query_run = mysqli_query($conn,$query);
 	}
 

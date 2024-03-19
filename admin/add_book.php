@@ -68,20 +68,20 @@ Author
 			<div class="col-md-4">
 				<form action="" method="post">
 					<div class="form-group">
-						<label for="email">Book Name:</label>
-						<input type="text" name="book_name" class="form-control" required>
+						<label for="email">Book number:</label>
+						<input type="text" name="book_number" class="form-control" required>
 					</div>
 					<div class="form-group">
-						<label for="mobile">Author ID:</label>
-						<input type="text" name="book_author" class="form-control" required>
-					</div>
-					<div class="form-group">
-						<label for="mobile">Category ID:</label>
+						  <label for="mobile">Category:</label>
 						<input type="text" name="book_category" class="form-control" required>
 					</div>
 					<div class="form-group">
-						<label for="mobile">Book Number:</label>
-						<input type="text" name="book_no" class="form-control" required>
+          <label for="mobile">Book Name:</label>
+						<input type="text" name="book_name" class="form-control" required>
+					</div>
+					<div class="form-group">
+          <label for="mobile">Author:</label>
+						<input type="text" name="book_author" class="form-control" required>
 					</div>
 					<div class="form-group">
 						<label for="mobile">Book Price:</label>
@@ -100,7 +100,7 @@ Author
 <?php
 	if(isset($_POST['add_book']))
 	{
-		$query = "insert into books values('$_POST[book_no]','$_POST[book_name]','$_POST[book_category]',$_POST[book_author],$_POST[book_price])";
+		$query = "insert into book values('$_POST[book_number]','$_POST[book_name]','$_POST[book_author]','$_POST[book_category]','$_POST[book_price]')";
 		$query_run = mysqli_query($conn,$query);
 	}
 ?>
