@@ -48,12 +48,12 @@ include 'header.php';
   <div class="b1">
 <div class="dropdown">
   <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-    Manage Books
+    Books
   </button>
   <ul class="dropdown-menu">
     <li><a class="dropdown-item" href="add_book.php">Add book</a></li>
-    <li><a class="dropdown-item" href="#">Update book</a></li>
-    <li><a class="dropdown-item" href="#">Delete</a></li>
+    <li><a class="dropdown-item" href="manage_books.php">Manage books</a></li>
+    <!-- <li><a class="dropdown-item" href="#">Delete</a></li> -->
   </ul>
 </div>
 <div class="dropdown">
@@ -62,7 +62,7 @@ include 'header.php';
   </button>
   <ul class="dropdown-menu">
     <li><a class="dropdown-item" href="add_cat.php">Add category</a></li>
-    <li><a class="dropdown-item" href="#">Remove category</a></li>
+    <li><a class="dropdown-item" href="manage_cat.php">Manage categories</a></li>
 
   </ul>
 </div>
@@ -72,11 +72,11 @@ Author
   </button>
   <ul class="dropdown-menu">
     <li><a class="dropdown-item" href="add_author.php">Add Author</a></li>
-    <li><a class="dropdown-item" href="">Remove Author</a></li>
+    <li><a class="dropdown-item" href="manage_authors.php">Manage Authors</a></li>
   </ul>
 </div>
 <div class="dropdown">
-  <a class="btn btn-secondary" type="button" href="issue_book.php" >
+  <a class="btn btn-secondary" type="button" href="issue_book.php" aria-expanded="false">
 Issue book
 </a>
 </div>
@@ -115,7 +115,7 @@ Issue book
 <div class="card" style="width: 18rem;">
   <div class="card-body">
     <h5 class="card-title">Issued Books</h5>
-    <p class="card-text">Total no. of books issued:</p>
+    <p class="card-text">Total no. of books issued:<?php echo get_issued_books_count(); ?></p>
     <a href="view_issued_books.php" class="btn btn-primary">View Issued books</a>
   </div>
 </div>

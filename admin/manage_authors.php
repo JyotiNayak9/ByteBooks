@@ -5,7 +5,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Add category</title>
+	<title>Issue Book</title>
 	<meta charset="utf-8" name="viewport" content="width=device-width,intial-scale=1">
 	<style>
         .form-group{
@@ -18,19 +18,25 @@
         }
         .b1{
           display: flex;
-          margin-bottom: 30px;+
+          margin-bottom: 20px;
         }
         .dropdown{
           margin-right: 10px;
         }
     </style>
+    <script type="text/javascript">
+  		function alertMsg(){
+  			alert(Book added successfully...);
+  			window.location.href = "admin_dashboard.php";
+  		}
+  	</script>
 </head>
 <body>
 	<?php
     include 'header.php';
     ?>
-     <div class="dashboard">
-     <div class="b1">
+    <div class="dashboard">
+    <div class="b1">
 <div class="dropdown">
   <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
     Books
@@ -67,36 +73,43 @@ Issue book
 </div>
   </div>
 </div>
-
     <div class="add">
-		<center><h4>Add category</h4><br></center>
-		<div class="row">
-			<div class="col-md-4"></div>
-			<div class="col-md-4">
-				<form action="" method="post">
-					<div class="form-group">
-						<label for="Author">Author Name </label>
-						<input type="text" name="author_name" class="form-control" required>
-					</div>
-					<!-- <div class="form-group">
-						<label for="">Category Name:</label>
-						<input type="text" name="cat_name" class="form-control" required>
-					</div>
-					 -->
-					<button type="submit" name="add_author" class="btn btn-primary">Add author</button>
-				</form>
+		<!-- <center><h4>Manage Books</h4></center> -->
+        <div class="row">
+			<div class="col-md-2"></div>
+			<div class="col-md-8">
+				<table class="table table-bordered table-hover">
+					<thead>
+						<tr>
+							
+							<th>Author ID</th>
+              <th>Name</th>
+							<th>Action</th>
+						</tr>
+					</thead>
+					<?php
+						$query = "select * from author";
+						$query_run = mysqli_query($conn,$query);
+						while ($row = mysqli_fetch_assoc($query_run)){
+							?>
+							<tr>
+								<td><?php echo $row['author_id'];?></td>
+								<td><?php echo $row['author_name'];?></td>
+								<td><button class="btn" name=""><a href="edit_author.php">Edit</a></button>
+								<button class="btn"><a href="delete_author.php">Delete</a></button></td>
+							</tr>
+							<?php
+						}
+					?>
+				</table>
 			</div>
-			<div class="col-md-4"></div>
+			<div class="col-md-2"></div>
+		</div>	
+    </div>
 		</div>
     </div>
+
 </body>
 </html>
 
-<?php
-	if(isset($_POST['add_author']))
-	{
-		$query = "insert into author (author_name) values('$_POST[author_name]')";
-		$query_run = mysqli_query($conn,$query);
-	}
 
-?>

@@ -30,15 +30,15 @@
     include 'header.php';
     ?>
      <div class="dashboard">
-<div class="b1">
+     <div class="b1">
 <div class="dropdown">
   <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-    Manage Books
+    Books
   </button>
   <ul class="dropdown-menu">
     <li><a class="dropdown-item" href="add_book.php">Add book</a></li>
-    <li><a class="dropdown-item" href="#">Update book</a></li>
-    <li><a class="dropdown-item" href="#">Delete</a></li>
+    <li><a class="dropdown-item" href="manage_books.php">Manage books</a></li>
+    <!-- <li><a class="dropdown-item" href="#">Delete</a></li> -->
   </ul>
 </div>
 <div class="dropdown">
@@ -47,7 +47,7 @@
   </button>
   <ul class="dropdown-menu">
     <li><a class="dropdown-item" href="add_cat.php">Add category</a></li>
-    <li><a class="dropdown-item" href="#">Remove category</a></li>
+    <li><a class="dropdown-item" href="manage_cat.php">Manage categories</a></li>
 
   </ul>
 </div>
@@ -57,9 +57,15 @@ Author
   </button>
   <ul class="dropdown-menu">
     <li><a class="dropdown-item" href="add_author.php">Add Author</a></li>
-    <li><a class="dropdown-item" href="">Remove Author</a></li>
+    <li><a class="dropdown-item" href="manage_authors.php">Manage Authors</a></li>
   </ul>
 </div>
+<div class="dropdown">
+  <a class="btn btn-secondary" type="button" href="issue_book.php" aria-expanded="false">
+Issue book
+</a>
+</div>
+  </div>
 </div>
 
     <div class="add">
@@ -68,10 +74,10 @@ Author
 			<div class="col-md-4"></div>
 			<div class="col-md-4">
 				<form action="" method="post">
-					<div class="form-group">
+					<!-- <div class="form-group">
 						<label for="email">Category Id:</label>
 						<input type="text" name="cat_id" class="form-control" required>
-					</div>
+					</div> -->
 					<div class="form-group">
 						<label for="mobile">Category Name:</label>
 						<input type="text" name="cat_name" class="form-control" required>
@@ -89,7 +95,7 @@ Author
 <?php
 	if(isset($_POST['add_cat']))
 	{
-		$query = "insert into category values('$_POST[cat_id]','$_POST[cat_name]')";
+		$query = "insert into category (cat_name) values('$_POST[cat_name]')";
 		$query_run = mysqli_query($conn,$query);
 	}
 ?>

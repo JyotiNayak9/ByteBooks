@@ -27,7 +27,7 @@ if(!is_admin_login()){
 include 'header.php';
 ?>
 <div class="show">
-<center><h4>Registered Book's Detail</h4><br></center>
+<center><h4>Issued Book's Detail</h4><br></center>
 		<div class="row">
 			<div class="col-md-2"></div>
 			<div class="col-md-8">

@@ -50,3 +50,14 @@ function get_author_count(){
     }
     return($author_count);
 }
+
+function get_issued_books_count(){
+    include '../db.php';
+    $issued_books_count ="";
+    $sql = "SELECT count(*)  as issued_books_count from issued_books";
+    $result = mysqli_query($conn, $sql);
+    while($row = mysqli_fetch_assoc($result)){
+        $issued_books_count = $row['issued_books_count'];
+    }
+    return($issued_books_count);
+}
