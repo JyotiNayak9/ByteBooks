@@ -1,6 +1,22 @@
 <?php
 require ("function.php");
 include '../db.php';
+$query = "select * from author where author_id = $_GET[aid]";
+$query_run = mysqli_query($conn, $query);
+while ($row = mysqli_fetch_assoc($query_run)) {
+    $author_name = $row['author_name'];
+     $author_id = $row['author_id'];
+    
+}
+?>
+<?php
+	if(isset($_POST['update'])){
+		$query = "update author set author_name = '$_POST[author_name]', author_id = '$_POST[author_id]' where author_id = $_GET[aid]";
+		$query_run = mysqli_query($conn,$query);
+        if($query_run){
+         header('location:manage_authors.php');
+        }	
+	}
 ?>
 <!DOCTYPE html>
 <html>
@@ -35,7 +51,6 @@ include '../db.php';
         }
     </script>
 </head>
-
 <body>
     <?php
     include 'header.php';
@@ -82,46 +97,25 @@ include '../db.php';
         </div>
     </div>
     <div class="add">
-        <!-- <center><h4>Manage Books</h4></center> -->
-        <div class="row">
-            <div class="col-md-2"></div>
-            <div class="col-md-8">
-                <table class="table table-bordered table-hover">
-                    <thead>
-                        <tr>
-
-                            <th>Category ID</th>
-                            <th>Name</th>
-                            <th>Action</th>
-                        </tr>
-                    </thead>
-                    <?php
-                    $query = "select * from category";
-                    $query_run = mysqli_query($conn, $query);
-                    while ($row = mysqli_fetch_assoc($query_run)) {
-                        ?>
-                        <tr>
-                            <td>
-                                <?php echo $row['cat_id']; ?>
-                            </td>
-                            <td>
-                                <?php echo $row['cat_name']; ?>
-                            </td>
-                            <td><button class="btn" name=""><a href="edit_cat.php?cid=<?php echo $row['cat_id'];?>">Edit</a></button>
-                                <button class="btn"><a href="delete_cat.php?cid=<?php echo $row['cat_id'];?>">Delete</a></button>
-                            </td>
-                        </tr>
-                        <?php
-                    }
-                    ?>
-                </table>
-            </div>
-            <div class="col-md-2"></div>
-        </div>
-    </div>
-    </div>
-    </div>
-
+    <center><h4>Edit Book</h4><br></center>
+		<div class="row">
+			<div class="col-md-4"></div>
+			<div class="col-md-4">
+				<form action="" method="post">
+					<div class="form-group">
+						<label for="mobile">Author ID:</label>
+						<input type="text" name="author_id" value="<?php echo $author_id;?>" class="form-control" disabled required>
+					</div>
+					<div class="form-group">
+						<label for="email">Author Name:</label>
+						<input type="text" name="author_name" value="<?php echo $author_name;?>" class="form-control" required>
+					</div>
+					<button type="submit" name="update" class="btn btn-primary">Update</button>
+				</form>
+			</div>
+			<div class="col-md-4"></div>
+		</div>
+    </div>   
 </body>
-
 </html>
+

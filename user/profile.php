@@ -79,32 +79,3 @@ include 'user_dashboard.php';
 
 
 
-<!-- <div class="row">
-			<div class="col-md-4"></div>
-			<div class="col-md-4">
-				<form action="" method="post">
-					<div class="form-group">
-						<label for="email">Book Name:</label>
-						<input type="text" name="book_name" class="form-control" required>
-					</div>
-					<div class="form-group">
-						<label for="mobile">Author ID:</label>
-						<input type="text" name="book_author" class="form-control" required>
-					</div>
-					<div class="form-group">
-						<label for="mobile">Category ID:</label>
-						<input type="text" name="book_category" class="form-control" required>
-					</div>
-					<div class="form-group">
-						<label for="mobile">Book Number:</label>
-						<input type="text" name="book_no" class="form-control" required>
-					</div>
-					<div class="form-group">
-						<label for="mobile">Book Price:</label>
-						<input type="text" name="book_price" class="form-control" required>
-					</div>
-					<button type="submit" name="add_book" class="btn btn-primary">Add Book</button>
-				</form>
-			</div>
-			<div class="col-md-4"></div>
-		</div> -->

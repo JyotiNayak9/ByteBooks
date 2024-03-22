@@ -95,8 +95,8 @@ Issue book
 							<tr>
 								<td><?php echo $row['author_id'];?></td>
 								<td><?php echo $row['author_name'];?></td>
-								<td><button class="btn" name=""><a href="edit_author.php">Edit</a></button>
-								<button class="btn"><a href="delete_author.php">Delete</a></button></td>
+								<td><button class="btn" name=""><a href="edit_author.php?aid=<?php echo $row['author_id'];?>">Edit</a></button>
+								<button class="btn"><a href="delete_author.php?aid=<?php echo $row['author_id'];?>">Delete</a></button></td>
 							</tr>
 							<?php
 						}
