@@ -19,7 +19,7 @@
     padding-top: 12px;
     padding-bottom: 12px;
     text-align: left;
-    background-color: #000F50;
+    background-color: #593021;
     color: white;
 }
 
@@ -835,6 +835,9 @@ filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='@topColor', end
 .progress .bar-danger, .progress-danger .bar {
 	border-color: #a62821
 }
+ .span9 thead{
+background-color: red;
+}
 .table {
 	margin-bottom: 0
 }
@@ -1140,7 +1143,7 @@ border-top-left-radius: 3px;
 	padding: 0
 }
 .stream.new-update a, .stream.load-more a {
-	background: #background: #f7f7f7;;
+	background: #f7f7f7;;
 	
 	color: #555;
 	font-weight: 600;
