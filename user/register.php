@@ -1,3 +1,25 @@
+<?php
+include("../db.php");
+session_start();
+ $message = '';
+ 
+if($_SERVER["REQUEST_METHOD"]==="POST"){
+
+    $full_name=$_POST['full_name'];
+    $email=$_POST['email'];
+    $password=$_POST['password'];
+    $course=$_POST['course'];
+    $phone=$_POST['phone'];
+    $phone = preg_replace("/[^0-9]/", "", $phone);
+    if (strlen($phone) != 10) {
+        $message = '<li>Phone number must be 10 digits long</li>';
+    }
+    $sql="INSERT INTO users(full_name,email,password,course,phone) VALUES('$full_name','$email','$password','$course',$phone)";
+    mysqli_query($conn,$sql);
+    echo '<script>alert("User registered successfully")</script>';
+    header('location:login.php');
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -19,6 +41,7 @@
                 <input type="text" class="form-control"name="full_name" id="full_name" placeholder="Full Name" > <br>
                 <span class="error" id="fullNameError"></span>
 </div>
+
 <div class="form-group">
                 <input type="text" class="form-control" name="email" id="email" placeholder="Email"><br>
                 <span class="error" id="emailError"></span>
@@ -31,6 +54,19 @@
                 <input type="password" class="form-control" name="confirm_password" id="confirm_password" placeholder="Repeat Password" ><br>
                 <span class="error" id="confirmPasswordError"></span>
 </div>
+<div class="form-group">
+                <input type="text" class="form-control" name="phone" id="phone" placeholder="Phone Number"><br>
+                <span class="error" id="phoneNumberError"></span>
+</div>
+
+<div class="form-group">
+<select name="course" id="course">
+					<option value="BCA">BCA</option>
+					<option value="BBA">BBA</option>
+					<option value="BSC.CSIT">BSC.CSIT</option>
+					<option value="BBM">BBM</option>
+				</select>
+</div>
 <div class="form-btn">
     <input type="submit" class="btn btn-primary" value="Register" name="submit"><br>
 </div>
@@ -42,17 +78,3 @@
 </body>
 </html>
 
-<?php
-include("../db.php");
-session_start();
- $message = '';
-if($_SERVER["REQUEST_METHOD"]==="POST"){
-
-    $full_name=$_POST['full_name'];
-    $email=$_POST['email'];
-    $password=$_POST['password'];
-    $sql="INSERT INTO users(full_name,email,password) VALUES('$full_name','$email','$password')";
-    mysqli_query($conn,$sql);
-    echo '<script>alert("User registered successfully")</script>';
-    header('location:login.php');
-}

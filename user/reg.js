@@ -3,7 +3,7 @@ function validateForm() {
     var email = document.getElementById("email").value;
     var password = document.getElementById("password").value;
     var confirmPassword = document.getElementById("confirm_password").value;
-
+    var phoneNumber = document.getElementById("phone").value;
     var isValid = true;
 
     document.getElementById("fullNameError").innerHTML = "";
@@ -42,6 +42,15 @@ function validateForm() {
         document.getElementById("confirmPasswordError").innerHTML = "Passwords do not match";
         isValid = false;
     }
-
+    if (phoneNumber.trim() == "") {
+        document.getElementById("phoneNumberError").innerHTML = "Please enter your phone number";
+        isValid = false;
+    } else {
+        var phonePattern = /^\d{10}$/; 
+        if (!phonePattern.test(phoneNumber)) {
+            document.getElementById("phoneNumberError").innerHTML = "Please enter a valid 10-digit phone number";
+            isValid = false;
+        }
+    }
     return isValid;
 }

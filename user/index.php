@@ -51,7 +51,7 @@
         <h2> For All Your Reading Needs </h2>
         <p> Join us as we embark on a literary adventure together!With convenient access from anywhere, at any time, you can explore our extensive catalog, borrow books, and dive into captivating stories right from the comfort of your home.</p>
       
-        <a href="login.php" class="btn"> Login </a>
+        <a href="login.php" class="btn"> Login  </a>
         <a href="register.php" class="btn"> Sign up now </a>
   </div>
   
