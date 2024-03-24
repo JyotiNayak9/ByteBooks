@@ -44,8 +44,9 @@ if(is_admin_login()){
                     <div class="span3">
                         <div class="sidebar">
                             <ul class="widget widget-menu unstyled">
-                                <li class="active"><a href="index.php"><i class="menu-icon icon-home"></i>Home
+                                <li class="active"><a href="../user/index.php"><i class="menu-icon icon-home"></i>Home
                                 </a></li>
+                                <li><a href="profile.php"><i class="menu-icon icon-user"></i>Profile </a></li>
                                  <li><a href="message.php"><i class="menu-icon icon-inbox"></i>Messages</a>
                                 </li>
                                 <li><a href="student.php"><i class="menu-icon icon-user"></i>Manage Students </a>
@@ -53,7 +54,7 @@ if(is_admin_login()){
                                 <li><a href="book.php"><i class="menu-icon icon-book"></i>All Books </a></li>
                                 <li><a href="addbook.php"><i class="menu-icon icon-edit"></i>Add Books </a></li>
                                 <li><a href="requests.php"><i class="menu-icon icon-tasks"></i>Issue/Return Requests </a></li>
-                                <li><a href="recommendations.php"><i class="menu-icon icon-list"></i>Book Recommendations </a></li>
+                               
                                 <li><a href="current.php"><i class="menu-icon icon-list"></i>Currently Issued Books </a></li>
                             </ul>
                             <ul class="widget widget-menu unstyled">
@@ -62,49 +63,51 @@ if(is_admin_login()){
                         </div>
                         <!--/.sidebar-->
                     </div>
-                    <!--/.span3-->
-                    
                     <div class="span9">
                         <center>
                         <a href="issue_requests.php" class="btn btn-info">Issue Requests</a>
                         <a href="renew_requests.php" class="btn btn-info">Renew Request</a>
                         <a href="return_requests.php" class="btn btn-info">Return Requests</a>
                         </center>
-                        <h1><i>Issue Requests</i></h1>
+                        <h1><i>Return Requests</i></h1>
                         <table class="table" id = "tables">
                                   <thead>
                                     <tr>
                                       <th>User ID</th>
-                                      <th>Book Id</th>
+                                      <th>Book Number</th>
                                       <th>Book Name</th>
-                                      <th>Availabilty</th>
+                                      <th>Dues</th>
                                       <th></th>
                                     </tr>
                                   </thead>
                                   <tbody>
                                     <?php
-                            $sql="select * from record,book where date_of_issue is NULL and record.book_num=book.book_num ";
+        $sql="select return.book_num,return.user_id,book_name,datediff(curdate(),Due_Date) as x from `return`,book,record where return.book_num=book.book_num and return.book_num=record.book_num and return.user_id=record.user_id";
                             $result=$conn->query($sql);
                             while($row=$result->fetch_assoc())
                             {
                                 $bookid=$row['book_num'];
                                 $rollno=$row['user_id'];
                                 $name=$row['book_name'];
-                                $avail=$row['availability'];
-                            
+                                $dues=$row['x'];
                                 
+                            
+                           
                             ?>
                                     <tr>
                                       <td><?php echo strtoupper($rollno) ?></td>
                                       <td><?php echo $bookid ?></td>
                                       <td><b><?php echo $name ?></b></td>
-                                      <td><?php echo $avail ?></td>
+                                      <td><?php 
+                                      if($dues > 0)
+                                          echo $dues;
+                                          else
+                                          echo 0; ?></td>
                                       <td><center>
-                                        <?php
-                                        if($avail > 0)
-                                        {echo "<a href=\"accept.php?id1=".$bookid."&id2=".$rollno."\" class=\"btn btn-success\">Accept</a>";}
-                                         ?>
-                                        <a href="reject.php?id1=<?php echo $bookid ?>&id2=<?php echo $rollno ?>" class="btn btn-danger">Reject</a>
+                                                                                
+                                        <a href="acceptreturn.php?id1=<?php echo $bookid; ?>&id2=<?php echo $rollno; ?>&id3=<?php echo $dues ?>" class="btn btn-success">Accept</a>
+                                         
+                                        <!--a href="rejectreturn.php?id1=<?php echo $bookid; ?>&id2=<?php echo $rollno; ?>" class="btn btn-danger">Reject</a-->
                                     </center></td>
                                     </tr>
                                <?php } ?>

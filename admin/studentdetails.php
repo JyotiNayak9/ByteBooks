@@ -44,8 +44,9 @@ if(is_admin_login()){
                     <div class="span3">
                         <div class="sidebar">
                             <ul class="widget widget-menu unstyled">
-                                <li class="active"><a href="index.php"><i class="menu-icon icon-home"></i>Home
+                                <li class="active"><a href="../user/index.php"><i class="menu-icon icon-home"></i>Home
                                 </a></li>
+                                <li><a href="profile.php"><i class="menu-icon icon-user"></i>Profile </a></li>
                                  <li><a href="message.php"><i class="menu-icon icon-inbox"></i>Messages</a>
                                 </li>
                                 <li><a href="student.php"><i class="menu-icon icon-user"></i>Manage Students </a>
@@ -53,7 +54,7 @@ if(is_admin_login()){
                                 <li><a href="book.php"><i class="menu-icon icon-book"></i>All Books </a></li>
                                 <li><a href="addbook.php"><i class="menu-icon icon-edit"></i>Add Books </a></li>
                                 <li><a href="requests.php"><i class="menu-icon icon-tasks"></i>Issue/Return Requests </a></li>
-                                <li><a href="recommendations.php"><i class="menu-icon icon-list"></i>Book Recommendations </a></li>
+                               
                                 <li><a href="current.php"><i class="menu-icon icon-list"></i>Currently Issued Books </a></li>
                             </ul>
                             <ul class="widget widget-menu unstyled">
@@ -64,55 +65,41 @@ if(is_admin_login()){
                     </div>
                     <!--/.span3-->
                     
+                    
                     <div class="span9">
-                        <center>
-                        <a href="issue_requests.php" class="btn btn-info">Issue Requests</a>
-                        <a href="renew_requests.php" class="btn btn-info">Renew Request</a>
-                        <a href="return_requests.php" class="btn btn-info">Return Requests</a>
-                        </center>
-                        <h1><i>Issue Requests</i></h1>
-                        <table class="table" id = "tables">
-                                  <thead>
-                                    <tr>
-                                      <th>User ID</th>
-                                      <th>Book Id</th>
-                                      <th>Book Name</th>
-                                      <th>Availabilty</th>
-                                      <th></th>
-                                    </tr>
-                                  </thead>
-                                  <tbody>
-                                    <?php
-                            $sql="select * from record,book where date_of_issue is NULL and record.book_num=book.book_num ";
-                            $result=$conn->query($sql);
-                            while($row=$result->fetch_assoc())
-                            {
-                                $bookid=$row['book_num'];
-                                $rollno=$row['user_id'];
-                                $name=$row['book_name'];
-                                $avail=$row['availability'];
-                            
-                                
-                            ?>
-                                    <tr>
-                                      <td><?php echo strtoupper($rollno) ?></td>
-                                      <td><?php echo $bookid ?></td>
-                                      <td><b><?php echo $name ?></b></td>
-                                      <td><?php echo $avail ?></td>
-                                      <td><center>
-                                        <?php
-                                        if($avail > 0)
-                                        {echo "<a href=\"accept.php?id1=".$bookid."&id2=".$rollno."\" class=\"btn btn-success\">Accept</a>";}
-                                         ?>
-                                        <a href="reject.php?id1=<?php echo $bookid ?>&id2=<?php echo $rollno ?>" class="btn btn-danger">Reject</a>
-                                    </center></td>
-                                    </tr>
-                               <?php } ?>
-                               </tbody>
-                                </table>
+                        <div class="content">
+
+                        <div class="module">
+                            <div class="module-head">
+                                <h3>Student Details</h3>
                             </div>
-                    <!--/.span3-->
+                            <div class="module-body">
+                        <?php
+                            $rno=$_GET['id'];
+                            $sql="select * from users where id='$rno'";
+                            $result=$conn->query($sql);
+                            $row=$result->fetch_assoc();    
+                            
+                                $name=$row['full_name'];
+                                $category=$row['course'];
+                                $email=$row['email'];
+                                $mobno=$row['phone'];
+
+
+                                echo "<b><u>Name:</u></b> ".$name."<br><br>";
+                                echo "<b><u>Category:</u></b> ".$category."<br><br>";
+                                echo "<b><u>Roll No:</u></b> ".$rno."<br><br>";
+                                echo "<b><u>Email Id:</u></b> ".$email."<br><br>";
+                                echo "<b><u>Mobile No:</u></b> ".$mobno."<br><br>"; 
+                            ?>
+                            
+                        <a href="student.php" class="btn btn-primary">Go Back</a>                             
+                               </div>
+                           </div>
+                        </div>
+                    </div>
                     <!--/.span9-->
+
                 </div>
             </div>
             <!--/.container-->
