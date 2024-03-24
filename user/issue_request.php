@@ -5,7 +5,7 @@ $id=$_GET['id'];
 
 $uid=$_SESSION['user_id'];
 
-$sql="insert into LMS.record (RollNo,BookId,Time) values ('$roll','$id', curtime())";
+$sql="insert into record (user_id,book_num) values ('$uid','$id')";
 
 if($conn->query($sql) === TRUE)
 {

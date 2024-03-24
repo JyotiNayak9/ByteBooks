@@ -84,14 +84,14 @@ if (is_user_login()) {
                                     </form>
                                     <br>
                                     <?php
-                                    $rollno = $_SESSION['RollNo'];
+                                    $id = $_SESSION['user_id'];
                                     if(isset($_POST['submit']))
                                         {$s=$_POST['title'];
-                                            $sql="select * from LMS.record,LMS.book where RollNo = '$rollno' and Date_of_Issue is NOT NULL and Date_of_Return is NOT NULL and book.Bookid = record.BookId and (record.BookId='$s' or Title like '%$s%')";
+                                            $sql="select * from record,book where user_id = '$id' and date_of_issue is NOT NULL and date_of_return is NOT NULL and book.book_num = record.book_num and (record.book_num='$s' or book_name like '%$s%')";
 
                                         }
                                     else
-                                        $sql="select * from LMS.record,LMS.book where RollNo = '$rollno' and Date_of_Issue is NOT NULL and Date_of_Return is NOT NULL and book.Bookid = record.BookId";
+                                        $sql="select * from record,book where user_id = '$id' and date_of_issue is NOT NULL and date_of_return is NOT NULL and book.book_num = record.book_num ";
 
                                     $result=$conn->query($sql);
                                     $rowcount=mysqli_num_rows($result);
@@ -118,10 +118,10 @@ if (is_user_login()) {
                             
                             while($row=$result->fetch_assoc())
                             {
-                                $bookid=$row['BookId'];
-                                $name=$row['Title'];
-                                $issuedate=$row['Date_of_Issue'];
-                                $returndate=$row['Date_of_Return'];                            
+                                $bookid=$row['book_num'];
+                                $name=$row['book_name'];
+                                $issuedate=$row['date_of_issue'];
+                                $returndate=$row['date_of_return'];                            
                             ?>
 
                                     <tr>

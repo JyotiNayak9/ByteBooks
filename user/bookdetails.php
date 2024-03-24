@@ -81,28 +81,20 @@ if (is_user_login()) {
                             <div class="module-body">
                         <?php
                             $x=$_GET['id'];
-                            $sql="select * from LMS.book where BookId='$x'";
+                            $sql="select * from book where book_num='$x'";
                             $result=$conn->query($sql);
                             $row=$result->fetch_assoc();    
                             
-                                $bookid=$row['BookId'];
-                                $name=$row['Title'];
-                                $publisher=$row['Publisher'];
-                                $year=$row['Year'];
-                                $avail=$row['Availability'];
-                                echo "<b>Book ID:</b> ".$bookid."<br><br>";
+                                $bookid=$row['book_num'];
+                                $name=$row['book_name'];
+                                $cat=$row['category'];
+                                $author=$row['author'];
+                                $avail=$row['availability'];
+                                echo "<b>Book number:</b> ".$bookid."<br><br>";
                                 echo "<b>Title:</b> ".$name."<br><br>";
-                                $sql1="select * from LMS.author where BookId='$bookid'";
-                                $result=$conn->query($sql1);
-                                
-                                echo "<b>Author:</b> ";
-                                while($row1=$result->fetch_assoc())
-                                {
-                                    echo $row1['Author']."&nbsp;";
-                                }
-                                echo "<br><br>";
-                                echo "<b>Publisher:</b> ".$publisher."<br><br>";
-                                echo "<b>Year:</b> ".$year."<br><br>";
+                                echo "<b>Category:</b> ".$cat."<br><br>";
+                                echo "<b>Author:</b> ".$author."<br><br>";
+            
                                 echo "<b>Availability:</b> ".$avail."<br><br>";
 
                                 

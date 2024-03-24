@@ -3,9 +3,9 @@ require('../db.php');
 
 $id=$_GET['id'];
 
-$roll=$_SESSION['RollNo'];
+$uid=$_SESSION['user_id'];
 
-$sql="insert into LMS.return (RollNo,BookId) values ('$roll','$id')";
+$sql="insert into return (user_id,book_num) values ('$uid','$id')";
 
 if($conn->query($sql) === TRUE)
 {

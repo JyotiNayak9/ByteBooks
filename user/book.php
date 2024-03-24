@@ -86,9 +86,9 @@ if (is_user_login()) {
                         <?php
                         if (isset ($_POST['submit'])) {
                             $s = $_POST['title'];
-                            $sql = "select * from lms.book where BookId='$s' or Title like '%$s%'";
+                            $sql = "select * from book where book_num='$s' or book_name like '%$s%'";
                         } else
-                            $sql = "select * from lms.book order by Availability DESC";
+                            $sql = "select * from book order by availability DESC";
 
                         $result = $conn->query($sql);
                         $rowcount = mysqli_num_rows($result);
@@ -104,6 +104,8 @@ if (is_user_login()) {
                                     <tr>
                                         <th>Book id</th>
                                         <th>Book name</th>
+                                        <th>Category</th>
+                                        <th>Author</th>
                                         <th>Availability</th>
                                         <th></th>
                                     </tr>
@@ -113,9 +115,11 @@ if (is_user_login()) {
 
                                     //$result=$conn->query($sql);
                                     while ($row = $result->fetch_assoc()) {
-                                        $bookid = $row['BookId'];
-                                        $name = $row['Title'];
-                                        $avail = $row['Availability'];
+                                        $bookid = $row['book_num'];
+                                        $name = $row['book_name'];
+                                        $cat = $row['category'];
+                                        $author = $row['author'];
+                                        $avail = $row['availability'];
                                         ?>
                                         <tr>
                                             <td>
@@ -123,6 +127,12 @@ if (is_user_login()) {
                                             </td>
                                             <td>
                                                 <?php echo $name ?>
+                                            </td>
+                                            <td>
+                                                <?php echo $cat ?>
+                                            </td>
+                                            <td>
+                                                <?php echo $author ?>
                                             </td>
                                             <td><b>
                                                     <?php
