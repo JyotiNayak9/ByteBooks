@@ -88,8 +88,8 @@ if (is_user_login()) {
                             $result=$conn->query($sql);
                             while($row=$result->fetch_assoc())
                             {
-                                $msg=$row['Msg'];
-                                $date=$row['Date'];
+                                $msg=$row['msg'];
+                                $date=$row['date'];
 
                             
                            
