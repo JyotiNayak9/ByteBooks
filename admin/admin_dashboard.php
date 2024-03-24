@@ -2,9 +2,8 @@
 include '../db.php';
 include 'function.php';
 
-if(!is_admin_login()){
-    header('location:admin_login.php');
-}
+if(is_admin_login()){
+    // header('location:admin_login.php');
 ?>
 
 <!DOCTYPE html>
@@ -16,7 +15,8 @@ if(!is_admin_login()){
         <title>LMS</title>
         <link type="text/css" href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
         <link type="text/css" href="bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet">
-        <link type="text/css" href="css/theme.css" rel="stylesheet">
+        <link type="text/css" href="../user/css/theme.css" rel="stylesheet">
+        <link rel="stylesheet" href="../user/home.css">
         <link type="text/css" href="images/icons/css/font-awesome.css" rel="stylesheet">
         <link type="text/css" href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,400,600'
             rel='stylesheet'>
@@ -71,15 +71,15 @@ if(!is_admin_login()){
                                 <div class="card-body">
 
                                 <?php
-                                $rollno = $_SESSION['RollNo'];
-                                $sql="select * from LMS.user where RollNo='$rollno'";
+                                $id = $_SESSION['admin_id'];
+                                $sql="select * from admin where admin_id='$id'";
                                 $result=$conn->query($sql);
                                 $row=$result->fetch_assoc();
 
-                                $name=$row['Name'];
-                                $category=$row['Category'];
-                                $email=$row['EmailId'];
-                                $mobno=$row['MobNo'];
+                                $name=$row['admin_name'];
+                                $email=$row['admin_email'];
+                                $mobno=$row['phone'];
+                                $address = $row['address'];
                                 ?>    
                                     <i>
                                     <h1 class="card-title"><center><?php echo $name ?></center></h1>
@@ -87,7 +87,8 @@ if(!is_admin_login()){
                                     <p><b>Email ID: </b><?php echo $email ?></p>
                                     <br>
                                     <p><b>Mobile number: </b><?php echo $mobno ?></p>
-                                    </b>
+                                 <br>
+                                 <p><b>Address: </b><?php echo $address ?></p>
                                 </i>
 
                                 </div>
@@ -122,7 +123,8 @@ if(!is_admin_login()){
 </html>
 
 
-<?php }
+<?php 
+}
 else {
     echo "<script type='text/javascript'>alert('Access Denied!!!')</script>";
 } ?>

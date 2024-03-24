@@ -95,7 +95,7 @@ if(isset($_POST['adminlogin'])){
                     $_SESSION['admin_id'] = $data['admin_id'];
                     $_SESSION['admin_email'] = $data['admin_email'];
                   
-                    header('location:../admin/admin_index.php');
+                    header('location:../admin/admin_dashboard.php');
                     exit;
                 } else {
                     $message = '<li>Wrong Password</li>';
