@@ -1,4 +1,3 @@
-
 <?php
 require ('../db.php');
 require ('function.php');
@@ -7,28 +6,7 @@ require ('function.php');
 
 <?php
 if (is_user_login()) {
-
-if(isset($_POST['submit']))
-{
-    $id = $_GET['id'];
-    $name=$_POST['Name'];
-    $course=$_POST['course'];
-    $email=$_POST['email'];
-    $phone=$_POST['phone'];
-    // $password=$_POST['password'];
-
-$sql1="update users set full_name='$name', course='$course', email='$email', phone='$phone',  where id='$id'";
-$result = mysqli_query($conn,$sql1);
-if($result === TRUE){
-echo "<script type='text/javascript'>alert('Success')</script>";
-header( "Refresh:0.01; url=index.php", true, 303);
-}
-else
-{//echo $conn->error;
-echo "<script type='text/javascript'>alert('Error')</script>";
-}
-}
-?> 
+    ?>
 
     <!DOCTYPE html>
     <html lang="en">
@@ -85,7 +63,7 @@ echo "<script type='text/javascript'>alert('Error')</script>";
                                 <li><a href="book.php"><i class="menu-icon icon-book"></i>All Books </a></li>
                                 <li><a href="history.php"><i class="menu-icon icon-tasks"></i>Previously Borrowed Books </a>
                                 </li>
-                              
+                               
                                 <li><a href="current.php"><i class="menu-icon icon-list"></i>Currently Issued Books </a>
                                 </li>
                             </ul>
@@ -95,40 +73,49 @@ echo "<script type='text/javascript'>alert('Error')</script>";
                         </div>
                     </div>
                     <div class="span9">
-                        <div class="module">
-                            <div class="module-head">
-                                <h3>Update Details</h3>
+                        <table class="table" id = "tables">
+                                  <thead>
+                                    <tr>
+                                      <th>Message</th>
+                                      <th>Date</th>
+                                      <th>Time</th>
+                                    </tr>
+                                  </thead>
+                                  <tbody>
+                                    <?php
+                                    $rollno=$_SESSION['RollNo'];
+                            $sql="select * from LMS.message where RollNo='$rollno' order by Date DESC,Time DESC";
+                            $result=$conn->query($sql);
+                            while($row=$result->fetch_assoc())
+                            {
+                                $msg=$row['Msg'];
+                                $date=$row['Date'];
+                                $time=$row['Time'];
+                            
+                           
+                            ?>
+                                    <tr>
+                                      <td><?php echo $msg ?></td>
+                                      <td><?php echo $date ?></td>
+                                      <td><?php echo $time ?></td>
+                                    </tr>
+                               <?php } ?>
+                               </tbody>
+                                </table>
                             </div>
-                            <div class="module-body">
-   
-                            <form action="update_pass.php" method="post">
-					<div class="form-group">
-						<label for="password">Enter Password:</label>
-						<input type="password" class="form-control" name="old_password">
-					</div>
-					<div class="form-group">
-						<label for="New Password">Enter New Password:</label>
-						<input type="password" name="new_password" class="form-control">
-					</div>
-					<button type="submit" name="update" class="btn btn-primary">Update Password</button>
-				</form>
-                             
-                    		           
-                        </div>
-                        </div> 	
-                    </div>
-
+                    <!--/.span3-->
+                    
+                    <!--/.span9-->
                 </div>
             </div>
-
+            <!--/.container-->
         </div>
 <div class="footer">
             <div class="container">
                 <b class="copyright">&copy; 2018 Library Management System </b>All rights reserved.
             </div>
         </div>
-        </body>
-</html>
+        
         <!--/.wrapper-->
         <script src="scripts/jquery-1.9.1.min.js" type="text/javascript"></script>
         <script src="scripts/jquery-ui-1.10.1.custom.min.js" type="text/javascript"></script>
@@ -137,7 +124,12 @@ echo "<script type='text/javascript'>alert('Error')</script>";
         <script src="scripts/flot/jquery.flot.resize.js" type="text/javascript"></script>
         <script src="scripts/datatables/jquery.dataTables.js" type="text/javascript"></script>
         <script src="scripts/common.js" type="text/javascript"></script>
-<?php
-}
-?>
- 
+      
+    </body>
+
+</html>
+
+<?php }
+else {
+    echo "<script type='text/javascript'>alert('Access Denied!!!')</script>";
+} ?>

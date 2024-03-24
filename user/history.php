@@ -1,4 +1,3 @@
-
 <?php
 require ('../db.php');
 require ('function.php');
@@ -7,28 +6,7 @@ require ('function.php');
 
 <?php
 if (is_user_login()) {
-
-if(isset($_POST['submit']))
-{
-    $id = $_GET['id'];
-    $name=$_POST['Name'];
-    $course=$_POST['course'];
-    $email=$_POST['email'];
-    $phone=$_POST['phone'];
-    // $password=$_POST['password'];
-
-$sql1="update users set full_name='$name', course='$course', email='$email', phone='$phone',  where id='$id'";
-$result = mysqli_query($conn,$sql1);
-if($result === TRUE){
-echo "<script type='text/javascript'>alert('Success')</script>";
-header( "Refresh:0.01; url=index.php", true, 303);
-}
-else
-{//echo $conn->error;
-echo "<script type='text/javascript'>alert('Error')</script>";
-}
-}
-?> 
+    ?>
 
     <!DOCTYPE html>
     <html lang="en">
@@ -85,7 +63,7 @@ echo "<script type='text/javascript'>alert('Error')</script>";
                                 <li><a href="book.php"><i class="menu-icon icon-book"></i>All Books </a></li>
                                 <li><a href="history.php"><i class="menu-icon icon-tasks"></i>Previously Borrowed Books </a>
                                 </li>
-                              
+                                
                                 <li><a href="current.php"><i class="menu-icon icon-list"></i>Currently Issued Books </a>
                                 </li>
                             </ul>
@@ -95,40 +73,78 @@ echo "<script type='text/javascript'>alert('Error')</script>";
                         </div>
                     </div>
                     <div class="span9">
-                        <div class="module">
-                            <div class="module-head">
-                                <h3>Update Details</h3>
-                            </div>
-                            <div class="module-body">
-   
-                            <form action="update_pass.php" method="post">
-					<div class="form-group">
-						<label for="password">Enter Password:</label>
-						<input type="password" class="form-control" name="old_password">
-					</div>
-					<div class="form-group">
-						<label for="New Password">Enter New Password:</label>
-						<input type="password" name="new_password" class="form-control">
-					</div>
-					<button type="submit" name="update" class="btn btn-primary">Update Password</button>
-				</form>
-                             
-                    		           
-                        </div>
-                        </div> 	
-                    </div>
+                        <form class="form-horizontal row-fluid" action="history.php" method="post">
+                                        <div class="control-group">
+                                            <label class="control-label" for="Search"><b>Search:</b></label>
+                                            <div class="controls">
+                                                <input type="text" id="title" name="title" placeholder="Enter Book Name/Book Id." class="span8" required>
+                                                <button type="submit" name="submit"class="btn">Search</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                    <br>
+                                    <?php
+                                    $rollno = $_SESSION['RollNo'];
+                                    if(isset($_POST['submit']))
+                                        {$s=$_POST['title'];
+                                            $sql="select * from LMS.record,LMS.book where RollNo = '$rollno' and Date_of_Issue is NOT NULL and Date_of_Return is NOT NULL and book.Bookid = record.BookId and (record.BookId='$s' or Title like '%$s%')";
 
+                                        }
+                                    else
+                                        $sql="select * from LMS.record,LMS.book where RollNo = '$rollno' and Date_of_Issue is NOT NULL and Date_of_Return is NOT NULL and book.Bookid = record.BookId";
+
+                                    $result=$conn->query($sql);
+                                    $rowcount=mysqli_num_rows($result);
+
+                                    if(!($rowcount))
+                                    	echo "<br><center><h2><b><i>No Results</i></b></h2></center>";
+                                    else
+                                    {
+
+                                    ?>
+                        <table class="table" id = "tables">
+                                  <thead>
+                                    <tr>
+                                      <th>Book id</th>
+                                      <th>Book name</th>
+                                      <th>Issue Date</th>
+                                      <th>Return Date</th>
+                                    </tr>
+                                  </thead>
+                                  <tbody>
+
+                                <?php
+
+                            
+                            while($row=$result->fetch_assoc())
+                            {
+                                $bookid=$row['BookId'];
+                                $name=$row['Title'];
+                                $issuedate=$row['Date_of_Issue'];
+                                $returndate=$row['Date_of_Return'];                            
+                            ?>
+
+                                    <tr>
+                                      <td><?php echo $bookid ?></td>
+                                      <td><?php echo $name ?></td>
+                                      <td><?php echo $issuedate ?></td>
+                                      <td><?php echo $returndate ?></td>
+                                    </tr>
+                            <?php }} ?>
+                                    </tbody>
+                                </table>
+                    </div>
+                    <!--/.span9-->
                 </div>
             </div>
-
+            <!--/.container-->
         </div>
 <div class="footer">
             <div class="container">
                 <b class="copyright">&copy; 2018 Library Management System </b>All rights reserved.
             </div>
         </div>
-        </body>
-</html>
+        
         <!--/.wrapper-->
         <script src="scripts/jquery-1.9.1.min.js" type="text/javascript"></script>
         <script src="scripts/jquery-ui-1.10.1.custom.min.js" type="text/javascript"></script>
@@ -137,7 +153,12 @@ echo "<script type='text/javascript'>alert('Error')</script>";
         <script src="scripts/flot/jquery.flot.resize.js" type="text/javascript"></script>
         <script src="scripts/datatables/jquery.dataTables.js" type="text/javascript"></script>
         <script src="scripts/common.js" type="text/javascript"></script>
-<?php
-}
-?>
- 
+      
+    </body>
+
+</html>
+
+<?php }
+else {
+    echo "<script type='text/javascript'>alert('Access Denied!!!')</script>";
+} ?>

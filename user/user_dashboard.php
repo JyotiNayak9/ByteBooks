@@ -49,13 +49,14 @@ if(!is_user_login()){
                     <div class="span3">
                         <div class="sidebar">
                             <ul class="widget widget-menu unstyled">
-                                <li class="active"><a href="index.php">Home
+                                <li class="active"><a href="index.php"><i class="menu-icon icon-home"></i>Home
                                 </a></li>
+                                <li><a href="profile.php"><i class="menu-icon icon-user"></i>Profile </a></li>
                                  <li><a href="message.php"><i class="menu-icon icon-inbox"></i>Messages</a>
                                 </li>
                                 <li><a href="book.php"><i class="menu-icon icon-book"></i>All Books </a></li>
                                 <li><a href="history.php"><i class="menu-icon icon-tasks"></i>Previously Borrowed Books </a></li>
-                                <li><a href="recommendations.php"><i class="menu-icon icon-list"></i>Recommend Books </a></li>
+                                
                                 <li><a href="current.php"><i class="menu-icon icon-list"></i>Currently Issued Books </a></li>
                             </ul>
                             <ul class="widget widget-menu unstyled">
@@ -98,7 +99,7 @@ if(!is_user_login()){
                     			</div>
                     		</div>
                             <br>
-                            <a href="edit_student_details.php" class="btn btn-primary">Edit Details</a>    
+                            <!-- <a href="edit_student_details.php?id=<?php echo $id;?>" class="btn btn-primary">Edit Details</a>     -->
       					</center>              	
                     </div>
                 </div>

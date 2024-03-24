@@ -1,4 +1,3 @@
-
 <?php
 require ('../db.php');
 require ('function.php');
@@ -100,19 +99,66 @@ echo "<script type='text/javascript'>alert('Error')</script>";
                                 <h3>Update Details</h3>
                             </div>
                             <div class="module-body">
-   
-                            <form action="update_pass.php" method="post">
-					<div class="form-group">
-						<label for="password">Enter Password:</label>
-						<input type="password" class="form-control" name="old_password">
-					</div>
-					<div class="form-group">
-						<label for="New Password">Enter New Password:</label>
-						<input type="password" name="new_password" class="form-control">
-					</div>
-					<button type="submit" name="update" class="btn btn-primary">Update Password</button>
-				</form>
-                             
+
+
+                                <?php
+                                $id = $_SESSION['user_id'];
+                                $sql="select * from users where id='$id'";
+                                $result=$conn->query($sql);
+                                $row=$result->fetch_assoc();
+
+                                $name=$row['full_name'];
+                                $course=$row['course'];
+                                $email=$row['email'];
+                                $phone=$row['phone'];
+                                // $password=$row['password'];
+                                ?>    
+                    			
+                                <form class="form-horizontal row-fluid" action="edit_student_details.php?id=<?php echo $id ?>" method="post">
+
+                                    <div class="control-group">
+                                        <label class="control-label" for="Name"><b>Name:</b></label>
+                                        <div class="controls">
+                                            <input type="text" id="Name" name="Name" value= "<?php echo $name?>" class="span8" required>
+                                        </div>
+                                    </div>
+
+                                    <div class="control-group">
+                                            <label class="control-label" for="Category"><b>Course:</b></label>
+                                            <div class="controls">
+                                                <select name = "course" tabindex="1" value="BCA" data-placeholder="Select course" class="span6">
+                                                    <option value="<?php echo $course?>"><?php echo $course?> </option>
+                                                    <option value="BCA">BCA</option>
+                                                    <option value="BBA">BBA</option>
+                                                    <option value="BSC.CSIT">BSC.CSIT</option>
+                                                    <option value="BBM">BBM</option>
+                                                </select>
+                                            </div>
+                                    </div>
+
+
+                                    <div class="control-group">
+                                        <label class="control-label" for="EmailId"><b>Email Id:</b></label>
+                                        <div class="controls">
+                                            <input type="text" id="EmailId" name="email" value= "<?php echo $email?>" class="span8" required>
+                                        </div>
+                                    </div>
+
+                                    <div class="control-group">
+                                        <label class="control-label" for="MobNo"><b>Mobile Number:</b></label>
+                                        <div class="controls">
+                                            <input type="text" id="phone" name="phone" value= "<?php echo $phone?>" class="span8" required>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="control-group">
+                                            <div class="controls">
+                                                <button type="submit" name="submit"class="btn btn-primary"><center>Update Details</center></button>
+                                            </div>
+                                        </div>                                                                     
+
+                                </form>
                     		           
                         </div>
                         </div> 	
