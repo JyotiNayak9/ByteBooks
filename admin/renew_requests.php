@@ -90,7 +90,7 @@ if(is_admin_login()){
                                 $bookid=$row['book_num'];
                                 $rollno=$row['user_id'];
                                 $name=$row['book_name'];
-                                $renewals=$row['renewals_left'];
+                                $renewals=$row['renewal_left'];
                             
                            
                             ?>

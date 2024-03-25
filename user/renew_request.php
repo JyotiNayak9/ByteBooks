@@ -1,6 +1,6 @@
 <?php
 require('../db.php');
-
+session_start();
 $id=$_GET['id'];
 
 $uid=$_SESSION['user_id'];

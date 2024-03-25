@@ -1,11 +1,12 @@
 <?php
 require('../db.php');
+session_start();
 
 $id=$_GET['id'];
 
 $uid=$_SESSION['user_id'];
 
-$sql="insert into return (user_id,book_num) values ('$uid','$id')";
+$sql="insert into `return` (user_id,book_num) values ('$uid','$id')";
 
 if($conn->query($sql) === TRUE)
 {
