@@ -46,8 +46,9 @@ if(is_admin_login()){
                     <div class="span3">
                         <div class="sidebar">
                             <ul class="widget widget-menu unstyled">
-                                <li class="active"><a href="index.php"><i class="menu-icon icon-home"></i>Home
+                                <li class="active"><a href="../user/index.php"><i class="menu-icon icon-home"></i>Home
                                 </a></li>
+                                <li><a href="profile.php"><i class="menu-icon icon-user"></i>Profile </a></li>
                                  <li><a href="message.php"><i class="menu-icon icon-inbox"></i>Messages</a>
                                 </li>
                                 <li><a href="student.php"><i class="menu-icon icon-user"></i>Manage Students </a>
@@ -55,7 +56,7 @@ if(is_admin_login()){
                                 <li><a href="book.php"><i class="menu-icon icon-book"></i>All Books </a></li>
                                 <li><a href="addbook.php"><i class="menu-icon icon-edit"></i>Add Books </a></li>
                                 <li><a href="requests.php"><i class="menu-icon icon-tasks"></i>Issue/Return Requests </a></li>
-                                <li><a href="recommendations.php"><i class="menu-icon icon-list"></i>Book Recommendations </a></li>
+                               
                                 <li><a href="current.php"><i class="menu-icon icon-list"></i>Currently Issued Books </a></li>
                             </ul>
                             <ul class="widget widget-menu unstyled">
@@ -67,40 +68,79 @@ if(is_admin_login()){
                     <!--/.span3-->
                     
                     <div class="span9">
-                        <center>
-                            <div class="card" style="width: 50%;"> 
-                                <img class="card-img-top" src="images/profile2.png" alt="Card image cap">
-                                <div class="card-body">
+                        <form class="form-horizontal row-fluid" action="current.php" method="post">
+                                        <div class="control-group">
+                                            <label class="control-label" for="Search"><b>Search:</b></label>
+                                            <div class="controls">
+                                                <input type="text" id="title" name="title" placeholder="Enter Roll No of Student/Book Name/Book Id." class="span8" required>
+                                                <button type="submit" name="submit"class="btn">Search</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                    <br>
+                                    <?php
+                                    if(isset($_POST['submit']))
+                                        {$s=$_POST['title'];
+                                            $sql="select record.book_num,user_id,book_name,due_date,date_of_issue,datediff(curdate(),Due_Date) as x from record,book where (date_of_issue is NOT NULL and date_of_return is NULL and book.book_num = record.book_num) and (user_id='$s' or record.book_num='$s' or Title like '%$s%')";
+                                        }
+                                    else
+                                        $sql="select record.book_num,user_id,book_name,due_date,date_of_issue,datediff(curdate(),Due_Date) as x from record,book where date_of_issue is NOT NULL and date_of_return is NULL and book.book_num = record.book_num";
+                                    $result=$conn->query($sql);
+                                    $rowcount=mysqli_num_rows($result);
+
+                                    if(!($rowcount))
+                                        echo "<br><center><h2><b><i>No Results</i></b></h2></center>";
+                                    else
+                                    {
+
+                                    
+                                    ?>
+                        <table class="table" id = "tables">
+                                  <thead>
+                                    <tr>
+                                      <th>User ID</th>  
+                                      <th>Book id</th>
+                                      <th>Book name</th>
+                                      <th>Issue Date</th>
+                                      <th>Due date</th>
+                                      <th>Dues</th>
+                                    </tr>
+                                  </thead>
+                                  <tbody>
 
                                 <?php
-                                $id = $_SESSION['admin_id'];
-                                $sql="select * from admin where admin_id='$id'";
-                                $result=$conn->query($sql);
-                                $row=$result->fetch_assoc();
 
-                                $name=$row['admin_name'];
-                                $email=$row['admin_email'];
-                                $mobno=$row['phone'];
-                                $address = $row['address'];
-                                ?>    
-                                    <i>
-                                    <h1 class="card-title"><center><?php echo $name ?></center></h1>
-                                    <br>
-                                    <p><b>Email ID: </b><?php echo $email ?></p>
-                                    <br>
-                                    <p><b>Mobile number: </b><?php echo $mobno ?></p>
-                                 <br>
-                                 <p><b>Address: </b><?php echo $address ?></p>
-                                </i>
+                            
 
-                                </div>
-                            </div>
-                        <br>
-                        <a href="edit_admin_details.php" class="btn btn-primary">Edit Details</a>
-                        <a href="change_password.php" class="btn btn-primary">Change Password</a>
-                        </center>               
+                            //$result=$conn->query($sql);
+                            while($row=$result->fetch_assoc())
+                            {
+                                $rollno=$row['user_id'];
+                                $bookid=$row['book_num'];
+                                $name=$row['book_name'];
+                                $issuedate=$row['date_of_issue'];
+                                $duedate=$row['due_date'];
+                                $dues=$row['x'];
+                            
+                            ?>
+
+                                    <tr>
+                                      <td><?php echo strtoupper($rollno) ?></td>
+                                      <td><?php echo $bookid ?></td>
+                                      <td><?php echo $name ?></td>
+                                      <td><?php echo $issuedate ?></td>
+                                      <td><?php echo $duedate ?></td>
+                                      <td><?php if($dues > 0)
+                                                  echo "<font color='red'>".$dues."</font>";
+                                                else
+                                                  echo "<font color='green'>0</font>";
+                                              ?>
+                                    </tr>
+                            <?php }} ?>
+                                    </tbody>
+                                </table>
                     </div>
-                    
+
                     <!--/.span9-->
                 </div>
             </div>
@@ -120,30 +160,6 @@ if(is_admin_login()){
         <script src="scripts/flot/jquery.flot.resize.js" type="text/javascript"></script>
         <script src="scripts/datatables/jquery.dataTables.js" type="text/javascript"></script>
         <script src="scripts/common.js" type="text/javascript"></script>
-
-<?php
-if(isset($_POST['submit']))
-{
-    $rollno = $_GET['id'];
-    $name=$_POST['Name'];
-    $email=$_POST['EmailId'];
-    $mobno=$_POST['MobNo'];
-    $pswd=$_POST['Password'];
-
-$sql1="update LMS.user set Name='$name', EmailId='$email', MobNo='$mobno', Password='$pswd' where RollNo='$rollno'";
-
-
-
-if($conn->query($sql1) === TRUE){
-echo "<script type='text/javascript'>alert('Success')</script>";
-header( "Refresh:0.01; url=index.php", true, 303);
-}
-else
-{//echo $conn->error;
-echo "<script type='text/javascript'>alert('Error')</script>";
-}
-}
-?>
       
     </body>
 

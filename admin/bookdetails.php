@@ -46,8 +46,9 @@ if(is_admin_login()){
                     <div class="span3">
                         <div class="sidebar">
                             <ul class="widget widget-menu unstyled">
-                                <li class="active"><a href="index.php"><i class="menu-icon icon-home"></i>Home
+                                <li class="active"><a href="../user/index.php"><i class="menu-icon icon-home"></i>Home
                                 </a></li>
+                                <li><a href="profile.php"><i class="menu-icon icon-user"></i>Profile </a></li>
                                  <li><a href="message.php"><i class="menu-icon icon-inbox"></i>Messages</a>
                                 </li>
                                 <li><a href="student.php"><i class="menu-icon icon-user"></i>Manage Students </a>
@@ -55,7 +56,7 @@ if(is_admin_login()){
                                 <li><a href="book.php"><i class="menu-icon icon-book"></i>All Books </a></li>
                                 <li><a href="addbook.php"><i class="menu-icon icon-edit"></i>Add Books </a></li>
                                 <li><a href="requests.php"><i class="menu-icon icon-tasks"></i>Issue/Return Requests </a></li>
-                                <li><a href="recommendations.php"><i class="menu-icon icon-list"></i>Book Recommendations </a></li>
+                               
                                 <li><a href="current.php"><i class="menu-icon icon-list"></i>Currently Issued Books </a></li>
                             </ul>
                             <ul class="widget widget-menu unstyled">
@@ -67,40 +68,48 @@ if(is_admin_login()){
                     <!--/.span3-->
                     
                     <div class="span9">
-                        <center>
-                            <div class="card" style="width: 50%;"> 
-                                <img class="card-img-top" src="images/profile2.png" alt="Card image cap">
-                                <div class="card-body">
+                        <div class="content">
 
-                                <?php
-                                $id = $_SESSION['admin_id'];
-                                $sql="select * from admin where admin_id='$id'";
-                                $result=$conn->query($sql);
-                                $row=$result->fetch_assoc();
-
-                                $name=$row['admin_name'];
-                                $email=$row['admin_email'];
-                                $mobno=$row['phone'];
-                                $address = $row['address'];
-                                ?>    
-                                    <i>
-                                    <h1 class="card-title"><center><?php echo $name ?></center></h1>
-                                    <br>
-                                    <p><b>Email ID: </b><?php echo $email ?></p>
-                                    <br>
-                                    <p><b>Mobile number: </b><?php echo $mobno ?></p>
-                                 <br>
-                                 <p><b>Address: </b><?php echo $address ?></p>
-                                </i>
-
-                                </div>
+                        <div class="module">
+                            <div class="module-head">
+                                <h3>Book Details</h3>
                             </div>
-                        <br>
-                        <a href="edit_admin_details.php" class="btn btn-primary">Edit Details</a>
-                        <a href="change_password.php" class="btn btn-primary">Change Password</a>
-                        </center>               
-                    </div>
-                    
+                            <div class="module-body">
+                        <?php
+                            $x=$_GET['id'];
+                            $sql="select * from book where book_num='$x'";
+                            $result=$conn->query($sql);
+                            $row=$result->fetch_assoc();    
+                            
+                                $bookid=$row['book_num'];
+                                $name=$row['book_name'];
+                                $category=$row['category'];
+                                $author=$row['author'];
+                                $price=$row['price'];
+                                $avail=$row['availability'];
+
+                                echo "<b>Book ID:</b> ".$bookid."<br><br>";
+                                echo "<b>Title:</b> ".$name."<br><br>";
+                                echo "<b>Author:</b> ".$author."<br><br>";
+                                echo "<b>Category:</b> ".$category."<br><br>";
+                                
+                                
+                                echo "<b>Price:</b> ".$price."<br><br>";
+                                echo "<b>Availability:</b> ".$avail."<br><br>";
+
+                                
+                        
+                           
+                            ?>
+                            
+                        <a href="book.php" class="btn btn-primary">Go Back</a>                             
+                               </div>
+                           </div>
+                            </div>
+                    <!--/.span3-->
+                    <!--/.span9-->
+                
+                    <!--/.span3-->
                     <!--/.span9-->
                 </div>
             </div>
@@ -120,30 +129,6 @@ if(is_admin_login()){
         <script src="scripts/flot/jquery.flot.resize.js" type="text/javascript"></script>
         <script src="scripts/datatables/jquery.dataTables.js" type="text/javascript"></script>
         <script src="scripts/common.js" type="text/javascript"></script>
-
-<?php
-if(isset($_POST['submit']))
-{
-    $rollno = $_GET['id'];
-    $name=$_POST['Name'];
-    $email=$_POST['EmailId'];
-    $mobno=$_POST['MobNo'];
-    $pswd=$_POST['Password'];
-
-$sql1="update LMS.user set Name='$name', EmailId='$email', MobNo='$mobno', Password='$pswd' where RollNo='$rollno'";
-
-
-
-if($conn->query($sql1) === TRUE){
-echo "<script type='text/javascript'>alert('Success')</script>";
-header( "Refresh:0.01; url=index.php", true, 303);
-}
-else
-{//echo $conn->error;
-echo "<script type='text/javascript'>alert('Error')</script>";
-}
-}
-?>
       
     </body>
 

@@ -1,6 +1,7 @@
 <?php
 include '../db.php';
 include 'function.php';
+ob_start();
 
 if(is_admin_login()){
     // header('location:admin_login.php');
@@ -46,8 +47,9 @@ if(is_admin_login()){
                     <div class="span3">
                         <div class="sidebar">
                             <ul class="widget widget-menu unstyled">
-                                <li class="active"><a href="index.php"><i class="menu-icon icon-home"></i>Home
+                                <li class="active"><a href="../user/index.php"><i class="menu-icon icon-home"></i>Home
                                 </a></li>
+                                <li><a href="profile.php"><i class="menu-icon icon-user"></i>Profile </a></li>
                                  <li><a href="message.php"><i class="menu-icon icon-inbox"></i>Messages</a>
                                 </li>
                                 <li><a href="student.php"><i class="menu-icon icon-user"></i>Manage Students </a>
@@ -55,7 +57,7 @@ if(is_admin_login()){
                                 <li><a href="book.php"><i class="menu-icon icon-book"></i>All Books </a></li>
                                 <li><a href="addbook.php"><i class="menu-icon icon-edit"></i>Add Books </a></li>
                                 <li><a href="requests.php"><i class="menu-icon icon-tasks"></i>Issue/Return Requests </a></li>
-                                <li><a href="recommendations.php"><i class="menu-icon icon-list"></i>Book Recommendations </a></li>
+                               
                                 <li><a href="current.php"><i class="menu-icon icon-list"></i>Currently Issued Books </a></li>
                             </ul>
                             <ul class="widget widget-menu unstyled">
@@ -66,39 +68,68 @@ if(is_admin_login()){
                     </div>
                     <!--/.span3-->
                     
+                    
                     <div class="span9">
-                        <center>
-                            <div class="card" style="width: 50%;"> 
-                                <img class="card-img-top" src="images/profile2.png" alt="Card image cap">
-                                <div class="card-body">
+                        <div class="module">
+                            <div class="module-head">
+                                <h3>Update Details</h3>
+                            </div>
+                            <div class="module-body">
+
 
                                 <?php
-                                $id = $_SESSION['admin_id'];
-                                $sql="select * from admin where admin_id='$id'";
+                                $rollno = $_SESSION['admin_id'];
+                                $sql="select * from admin where admin_id='$rollno'";
                                 $result=$conn->query($sql);
                                 $row=$result->fetch_assoc();
 
                                 $name=$row['admin_name'];
                                 $email=$row['admin_email'];
                                 $mobno=$row['phone'];
-                                $address = $row['address'];
+                                $address=$row['address'];
+                                
                                 ?>    
-                                    <i>
-                                    <h1 class="card-title"><center><?php echo $name ?></center></h1>
-                                    <br>
-                                    <p><b>Email ID: </b><?php echo $email ?></p>
-                                    <br>
-                                    <p><b>Mobile number: </b><?php echo $mobno ?></p>
-                                 <br>
-                                 <p><b>Address: </b><?php echo $address ?></p>
-                                </i>
+                                
+                                <form class="form-horizontal row-fluid" action="edit_admin_details.php?id=<?php echo $rollno ?>" method="post">
 
-                                </div>
-                            </div>
-                        <br>
-                        <a href="edit_admin_details.php" class="btn btn-primary">Edit Details</a>
-                        <a href="change_password.php" class="btn btn-primary">Change Password</a>
-                        </center>               
+                                    <div class="control-group">
+                                        <label class="control-label" for="Name"><b>Name:</b></label>
+                                        <div class="controls">
+                                            <input type="text" id="Name" name="Name" value= "<?php echo $name?>" class="span8" required>
+                                        </div>
+                                    </div>
+
+                                    <div class="control-group">
+                                        <label class="control-label" for="EmailId"><b>Email Id:</b></label>
+                                        <div class="controls">
+                                            <input type="text" id="EmailId" name="EmailId" value= "<?php echo $email?>" class="span8" required>
+                                        </div>
+                                    </div>
+
+                                    <div class="control-group">
+                                        <label class="control-label" for="MobNo"><b>Mobile Number:</b></label>
+                                        <div class="controls">
+                                            <input type="text" id="MobNo" name="MobNo" value= "<?php echo $mobno?>" class="span8" required>
+                                        </div>
+                                    </div>
+
+                                    <div class="control-group">
+                                        <label class="control-label" for="Password"><b>Address:</b></label>
+                                        <div class="controls">
+                                            <input type="text" id="Password" name="address"  value= "<?php echo $address?>" class="span8" required>
+                                        </div>
+                                    </div>   
+
+                                    <div class="control-group">
+                                            <div class="controls">
+                                                <button type="submit" name="submit"class="btn-primary"><center>Update Details</center></button>
+                                            </div>
+                                        </div>                                                                     
+
+                                </form>
+                                       
+                        </div>
+                        </div>  
                     </div>
                     
                     <!--/.span9-->
@@ -128,15 +159,15 @@ if(isset($_POST['submit']))
     $name=$_POST['Name'];
     $email=$_POST['EmailId'];
     $mobno=$_POST['MobNo'];
-    $pswd=$_POST['Password'];
+    $address=$_POST['address'];
 
-$sql1="update LMS.user set Name='$name', EmailId='$email', MobNo='$mobno', Password='$pswd' where RollNo='$rollno'";
+$sql1="update admin set admin_name='$name', admin_email='$email', phone='$mobno', address='$address' where admin_id='$rollno'";
 
 
 
 if($conn->query($sql1) === TRUE){
 echo "<script type='text/javascript'>alert('Success')</script>";
-header( "Refresh:0.01; url=index.php", true, 303);
+header( "Refresh:0.01; url=profile.php", true, 303);
 }
 else
 {//echo $conn->error;

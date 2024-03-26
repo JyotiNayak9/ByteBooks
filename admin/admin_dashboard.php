@@ -18,8 +18,9 @@ if(is_admin_login()){
         <link type="text/css" href="../user/css/theme.css" rel="stylesheet">
         <link rel="stylesheet" href="../user/home.css">
         <link type="text/css" href="images/icons/css/font-awesome.css" rel="stylesheet">
-        <link type="text/css" href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,400,600'
-            rel='stylesheet'>
+        <link type="text/css" href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,400,600' rel='stylesheet'>
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Protest+Riot&display=swap" rel="stylesheet">
     </head>
     <body>
     <div class="navbar navbar-fixed-top">
