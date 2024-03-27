@@ -58,6 +58,8 @@ if (is_admin_login()) {
                                 </li>
                                 <li><a href="book.php"><i class="menu-icon icon-book"></i>All Books </a></li>
                                 <li><a href="addbook.php"><i class="menu-icon icon-edit"></i>Add Books </a></li>
+                                <li><a href="reg_cat.php"><i class="menu-icon icon-edit"></i>Categories </a></li>
+                                <li><a href="reg_author.php"><i class="menu-icon icon-edit"></i>Authors </a></li>
                                 <li><a href="requests.php"><i class="menu-icon icon-tasks"></i>Issue/Return Requests </a>
                                 </li>
 
@@ -84,7 +86,7 @@ if (is_admin_login()) {
 
                                     <br>
 
-                                    <form class="form-horizontal row-fluid" action="addbook.php" method="post">
+                                    <form class="form-horizontal row-fluid" action="addbook.php" method="post" enctype="multipart/form-data">
                                     <div class="control-group">
                                             <label class="control-label" for="Title"><b>Book Number</b></label>
                                             <div class="controls">
@@ -147,6 +149,13 @@ if (is_admin_login()) {
                                                     placeholder="Number of Copies" class="span8" required>
                                             </div>
                                         </div>
+                                        <div class="control-group">
+                                            <label class="control-label" for="Availability"><b>Cover Page </b></label>
+                                            <div class="controls">
+                                                <input type="file" id="image" name="image"
+                                                    placeholder="Image" class="span8" required>
+                                            </div>
+                                        </div>
 
 
                                         <div class="control-group">
@@ -186,17 +195,73 @@ if (is_admin_login()) {
         <script src="scripts/common.js" type="text/javascript"></script>
 
         <?php
-if (isset ($_POST['submit'])) {
-  $query = "insert into book values('$_POST[book_num]','$_POST[title]','$_POST[book_author]','$_POST[category]','$_POST[price]','$_POST[availability]')";
-  $query_run = mysqli_query($conn, $query);
-  echo "<script type='text/javascript'>alert('Book added')</script>";
+
+
+
+    if(isset($_POST['submit'])) {
+        $book_num = $_POST['book_num'];
+        $title = $_POST['title'];
+        $book_author = $_POST['book_author'];
+        $category = $_POST['category'];
+        $price = $_POST['price'];
+        $availability = $_POST['availability'];
+        
+        // File upload process
+        $target_dir = '../images/';
+        $image_file = basename($_FILES['image']['name']);
+        $target_file = $target_dir . $image_file;
+        $uploadOk = 1;
+        $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
+        
+        // Check if image file is a actual image or fake image
+        if(isset($_POST["submit"])) {
+            $check = getimagesize($_FILES['image']['tmp_name']);
+            if($check !== false) {
+                echo "File is an image - " . $check['mime'] . ".";
+                $uploadOk = 1;
+            } else {
+                echo "File is not an image.";
+                $uploadOk = 0;
+            }
+        }
+        
+       
+        
+        // Check file size
+        if ($_FILES['image']['size'] > 2097152) {
+            echo "Sorry, your file is too large.";
+            $uploadOk = 0;
+        }
+        
+        // Allow certain file formats
+        if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg") {
+            echo "Sorry, only JPG, JPEG, PNG files are allowed.";
+            $uploadOk = 0;
+        }
+        
+        // Check if $uploadOk is set to 0 by an error
+        if ($uploadOk == 0) {
+            echo "Sorry, your file was not uploaded.";
+        // if everything is ok, try to upload file
+        } else {
+            if (move_uploaded_file($_FILES['image']['tmp_name'], $target_file)) {
+                echo "The file ". htmlspecialchars( basename( $_FILES['image']['name'])). " has been uploaded.";
+                
+                // Insert book details into database
+                $sql = "INSERT INTO book (book_num, book_name, author, category, price, availability, image) VALUES ('$book_num', '$title', '$book_author', '$category', '$price', '$availability', '$image_file')";
+                $result = mysqli_query($conn, $sql);
+                
+                if ($result) {
+                    echo "<script>alert('Book added successfully')</script>";
+                } else {
+                    echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+                }
+            } else {
+                echo "Sorry, there was an error uploading your file.";
+            }
+        }
+    }
+} else {
+    echo "<script type='text/javascript'>alert('Access Denied!!!')</script>";
 }
 ?>
-
-    </body>
-
-    </html>
-
-<?php } else {
-    echo "<script type='text/javascript'>alert('Access Denied!!!')</script>";
-} ?>

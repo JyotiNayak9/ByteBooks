@@ -4,8 +4,7 @@ require ('function.php');
 // session_start();
 ?>
 
-<?php
-if (is_user_login()) {
+
     ?>
 
     <!DOCTYPE html>
@@ -90,6 +89,8 @@ if (is_user_login()) {
                                 $cat=$row['category'];
                                 $author=$row['author'];
                                 $avail=$row['availability'];
+                                echo '<img src="../images/' . $row['image'] . '" alt="Book Image" width="200" height="200"><br><br>';
+
                                 echo "<b>Book number:</b> ".$bookid."<br><br>";
                                 echo "<b>Title:</b> ".$name."<br><br>";
                                 echo "<b>Category:</b> ".$cat."<br><br>";
@@ -135,6 +136,3 @@ if (is_user_login()) {
 
     </html>
 
-<?php } else {
-    echo "<script type='text/javascript'>alert('Access Denied!!!')</script>";
-} ?>

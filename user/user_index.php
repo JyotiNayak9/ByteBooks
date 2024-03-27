@@ -1,4 +1,9 @@
 
+<?php
+if (session_status() == PHP_SESSION_NONE) {
+  session_start();
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,12 +17,10 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 <script src="https://kit.fontawesome.com/17ed295021.js" crossorigin="anonymous"></script>
 </head>
-</head>
+
 <body>
 <header>
-  <?php
-  include 'function.php';
-  ?>
+ 
 <nav class="navbar">
     <div class="logo"><h2>ByteBooks</h2></div>              
       <div class="menu">
@@ -26,22 +29,26 @@
               <li class="dropdownn">
                 <a href="#" class="dropbtn">Categories</a>
                 <div class="dropdown-content">
-                    <a class="catr" href="category1.html">Category 1</a>
-                    <a class="catr" href="category2.html">Category 2</a>
-                    <a class="catr" href="category3.html">Category 3</a>
+                  <?php
+                  $sql = "select * from category";
+                  $result = mysqli_query($conn,$sql);
+                  if ($row= $result->fetch_assoc()){
+                  ?>
+                    <a class="catr" href=""><?php echo $row['cat_name'] ?></a>
+                 <?php } ?>
                 </div>
             </li>
-            <li><a href="#">ContactUs</a></li>
-            <li><a href="#">About</a></li>
+            <!-- <li><a href="#">ContactUs</a></li> -->
+            <li><a href="about.php">About</a></li>
             <li><a href="user_dashboard.php"><i class="fa-solid fa-user"></i></a></li>
                 </div>
             </li>
           
         </ul>
-        <div class="search">
+        <!-- <div class="search">
           <input class="srch" type="search" name="" placeholder="Type to search ">
           <i class="fa-solid fa-magnifying-glass"></i>
-      </div>
+      </div> -->
       </div>
   </nav>
 
@@ -68,7 +75,36 @@
       <h2>ByteBooks Features</h2>
       <!-- <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem culpa, quidem magni quasi deleniti modi, odit nisi molestias architecto eius reiciendis porro laudantium dolore dolorem. Quam eum ex consectetur sunt.</p> -->
     </div>
-<div class="cat1">
+    <div class="cat1">
+    <div class="cat-books">
+        <?php
+        // Fetch all books from the database
+        $sql = "SELECT * FROM book";
+        $result = $conn->query($sql);
+
+        // Check if there are any books
+        if ($result->num_rows > 0) {
+            // Loop through each book and display it
+            while ($row = $result->fetch_assoc()) {
+                ?>
+                <div class="card" style="width: 18rem;">
+                    <img src="../images/<?php echo $row['image']; ?>" class="card-img-top" alt="Book Image">
+                    <div class="card-body">
+                        <h5 class="card-title"><?php echo $row['book_name']; ?></h5>
+                        <!-- <p class="card-text"><?php echo $row['']; ?></p> -->
+                        <a href="bookdetails.php?id=<?php echo $row['book_num'];?>" class="btn btn-primary">Explore more</a>
+                    </div>
+                </div>
+                <?php
+            }
+        } else {
+            // If no books found in the database
+            echo "<p>No books found</p>";
+        }
+        ?>
+    </div>
+</div>
+<!-- <div class="cat1">
     <div class="cat-books">
       <div class="card" style="width: 18rem;">
         <img src="../images/book.jpg" class="card-img-top" alt="...">
@@ -84,7 +120,7 @@
         <div class="card-body">
           <h5 class="card-title">Premium books</h5>
           <!-- <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> -->
-          <a href="#" class="btn btn-primary" >Explore more</a>
+          <!-- <a href="#" class="btn btn-primary" >Explore more</a>
         </div>
       </div>
       <div class="card" style="width: 18rem;">
@@ -92,11 +128,11 @@
         <div class="card-body">
           <h5 class="card-title">Card title</h5>
           <!-- <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> -->
-          <a href="#" class="btn btn-primary" >Explore more</a>
+          <!-- <a href="#" class="btn btn-primary" >Explore more</a>
         </div>
         </div>      
     </div>
-    </div>
+    </div> --> 
   </div>
 </section>
 <section class="review">
@@ -114,7 +150,7 @@
                 <label>Comments</label>
                 <textarea name="comment" class="formcont"></textarea>
             </div>
-            <button type="submit" class="btn" value="submit">Submit</button>               
+            <button type="submit" class="btn" name="submit" value="submit">Submit</button>               
         </form>
     </section>
   <footer>
@@ -130,7 +166,7 @@
     <div class="col">
         <h4>About</h4>
         <a href="index.php">Home</a>
-        <a href="about1.html">About us</a>
+        <a href="about.php">About us</a>
         <a href="E-library.php">E-library</a>
         <a href="premium.php">Premimun collection</a>
     </div>
@@ -138,7 +174,7 @@
         <h4>My account</h4>
         <a href="register.php">Sign in</a>
         <a href="login.php">Login</a>
-        <a href="#">View Profile</a>
+        <a href="user_dashboard.php">View Profile</a>
     </div>
 </footer>
 

@@ -55,6 +55,8 @@ if(is_admin_login()){
                                 </li>
                                 <li><a href="book.php"><i class="menu-icon icon-book"></i>All Books </a></li>
                                 <li><a href="addbook.php"><i class="menu-icon icon-edit"></i>Add Books </a></li>
+                                <li><a href="reg_cat.php"><i class="menu-icon icon-edit"></i>Categories </a></li>
+                                <li><a href="reg_author.php"><i class="menu-icon icon-edit"></i>Authors </a></li>
                                 <li><a href="requests.php"><i class="menu-icon icon-tasks"></i>Issue/Return Requests </a></li>
                                
                                 <li><a href="current.php"><i class="menu-icon icon-list"></i>Currently Issued Books </a></li>

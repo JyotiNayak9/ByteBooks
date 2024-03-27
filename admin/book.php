@@ -55,6 +55,8 @@ if(is_admin_login()){
                                 </li>
                                 <li><a href="book.php"><i class="menu-icon icon-book"></i>All Books </a></li>
                                 <li><a href="addbook.php"><i class="menu-icon icon-edit"></i>Add Books </a></li>
+                                <li><a href="reg_cat.php"><i class="menu-icon icon-edit"></i>Categories </a></li>
+                                <li><a href="reg_author.php"><i class="menu-icon icon-edit"></i>Authors </a></li>
                                 <li><a href="requests.php"><i class="menu-icon icon-tasks"></i>Issue/Return Requests </a></li>
                                
                                 <li><a href="current.php"><i class="menu-icon icon-list"></i>Currently Issued Books </a></li>
@@ -82,7 +84,7 @@ if(is_admin_login()){
                                     <?php
                                     if(isset($_POST['submit']))
                                         {$s=$_POST['title'];
-                                            $sql="select * from book where book_num='$s' or Title like '%$s%'";
+                                            $sql="select * from book where book_num='$s' or  book_name like '%$s%'";
                                         }
                                     else
                                         $sql="select * from book";
@@ -101,8 +103,10 @@ if(is_admin_login()){
                                   <thead>
                                     <tr>
                                       <th>Book id</th>
+                                      <th>Image</th>
                                       <th>Book name</th>
                                       <th>Availability</th>
+                                     
                                       <th></th>
                                     </tr>
                                   </thead>
@@ -119,7 +123,9 @@ if(is_admin_login()){
                            
                             ?>
                                     <tr>
+                                  
                                       <td><?php echo $bookid ?></td>
+                                      <td><img src="../images/<?php echo $row['image']; ?>" width="100" height="100"></td> 
                                       <td><?php echo $name ?></td>
                                       <td><b><?php echo $avail ?></b></td>
                                         <td><center>

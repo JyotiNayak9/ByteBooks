@@ -55,6 +55,8 @@ if(is_admin_login()){
                                 </li>
                                 <li><a href="book.php"><i class="menu-icon icon-book"></i>All Books </a></li>
                                 <li><a href="addbook.php"><i class="menu-icon icon-edit"></i>Add Books </a></li>
+                                <li><a href="reg_cat.php"><i class="menu-icon icon-edit"></i>Categories </a></li>
+                                <li><a href="reg_author.php"><i class="menu-icon icon-edit"></i>Authors </a></li>
                                 <li><a href="requests.php"><i class="menu-icon icon-tasks"></i>Issue/Return Requests </a></li>
                                
                                 <li><a href="current.php"><i class="menu-icon icon-list"></i>Currently Issued Books </a></li>
@@ -87,8 +89,9 @@ if(is_admin_login()){
                                 $author=$row['author'];
                                 $price=$row['price'];
                                 $avail=$row['availability'];
-
+                                echo '<img src="../images/' . $row['image'] . '" alt="Book Image" width="200" height="200"><br><br>';
                                 echo "<b>Book ID:</b> ".$bookid."<br><br>";
+
                                 echo "<b>Title:</b> ".$name."<br><br>";
                                 echo "<b>Author:</b> ".$author."<br><br>";
                                 echo "<b>Category:</b> ".$category."<br><br>";

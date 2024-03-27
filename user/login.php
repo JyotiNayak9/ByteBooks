@@ -10,7 +10,7 @@
 <style>
     .form{
         display: flex;
-        justify-content: space-between;
+        /* justify-content: space-between; */
         /* margin: auto; */
     }
 </style>
@@ -107,7 +107,7 @@ if(isset($_POST['adminlogin'])){
     }
 
 ?> 
-?>
+
 <div class="blur-bg"></div>
 <body>
     <div class="form">
