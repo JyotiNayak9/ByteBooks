@@ -56,7 +56,7 @@ h6 {
 	font-size: 11px
 }
 strong, b {
-	color: #555
+	color:#000;
 }
 a:hover, a:focus {
 	outline: 0
@@ -82,7 +82,7 @@ blockquote small::before {
 	font-size: 16px;
 	line-height: 22px
 }
-.text-muted {color: #999;}
+.text-muted {color: #464545;}
 .wrapper {
 	background: url(../images/bg.png) fff;
 	border-bottom: 1px solid #fff;
@@ -376,7 +376,7 @@ box-shadow: 0 1px 1px rgba(0,0,0,.05);
 	display: block
 }
 .btn-box b {
-	color: #444;
+	color: #313131;
 	font-size: 20px;
 	font-weight:normal;
 	margin-top: 5px;
@@ -469,7 +469,7 @@ transition: all .2s ease-in-out;
 	outline-offset: -2px
 }
 .btn:focus, .btn:hover {
-	color: #767676;
+	color: #505050;
 	text-decoration: none
 }
 .btn.active, .btn:active {
@@ -487,12 +487,12 @@ transition: all .2s ease-in-out;
 	box-shadow: none
 }
 .btn-default {
-	color: #767676;
+	color: #4a4a4a;
 	background-color: #fafafa;
 	border-color: #ededed
 }
 .btn-default.active, .btn-default:active, .btn-default:focus, .btn-default:hover, .open>.btn-default.dropdown-toggle {
-	color: #767676;
+	color: #343434;
 	background-color: #e1e1e1;
 	border-color: #cfcfcf
 }
@@ -956,7 +956,7 @@ transition: all .2s ease-in-out;
 	background: #d74f2a
 }
 .widget-menu>li+li {
-	border-top: 1px solid #555
+	border-top: 1px solid #303030
 }
 .widget-menu>li>a {
 	background-color:#593021;
@@ -1145,7 +1145,7 @@ border-top-left-radius: 3px;
 .stream.new-update a, .stream.load-more a {
 	background: #f7f7f7;;
 	
-	color: #555;
+	color: #343434;
 	font-weight: 600;
 	font-size: 14px;
 	display: block;
@@ -1240,16 +1240,16 @@ border-top-left-radius: 3px;
 	font-weight: 600
 }
 .profile-tab>li>a {
-	color: #888;
+	color: #414040;
 	-webkit-border-radius: 2px 2px 0 0;
 	-moz-border-radius: 2px 2px 0 0;
 	border-radius: 2px 2px 0 0
 }
 .profile-tab>li>a:hover {
-	color: #666
+	color: #313131
 }
 .profile-tab>li.active>a {
-	color: #444
+	color: #383737
 }
 .profile-tab>li+li {
 	margin-left: 5px
@@ -1313,7 +1313,7 @@ border-top-left-radius: 3px;
 }
 .message .table-message tbody [class^="icon-"], .message .table-message tbody [class*=" icon-"] {
 	font-size: 13px;
-	color: #999
+	color: #545353
 }
 .message .table-message tbody .icon-star {
 	color: #ddd
@@ -1333,7 +1333,7 @@ border-top-left-radius: 3px;
 }
 .message .table-message tbody tr.unread {
 	font-weight: bold;
-	color: #666
+	color: #393838
 }
 .message .table-message tbody tr.unread td {
 	background: #fff

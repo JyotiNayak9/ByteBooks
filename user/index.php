@@ -80,7 +80,7 @@
 <section class="Categories">
   <div class="cat-row">
     <div class="cat-header">
-      <h2>ByteBooks Features</h2>
+      <h2>Books Available</h2>
       <!-- <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem culpa, quidem magni quasi deleniti modi, odit nisi molestias architecto eius reiciendis porro laudantium dolore dolorem. Quam eum ex consectetur sunt.</p> -->
     </div>
     <div class="cat1">

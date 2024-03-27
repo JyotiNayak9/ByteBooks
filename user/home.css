@@ -164,35 +164,48 @@ section{
     padding-bottom: 150px;
   
 }
-.cat-header h2{
-    font-size: 35px;
-    margin-bottom: 20px;
-    margin-top: 4%;
-}
-.cat-books{
+
+
+.cat-books {
     display: flex;
-    justify-content: center;
-    text-align: center;
-    align-items: center;
-    width: 100%;
-    margin-top:20px;
-    
-}
-.cat-books .card{
-    margin:30px;
-    
+    flex-wrap: wrap; /* Allow items to wrap to the next line */
+    justify-content: space-around; /* Start from the left */
 }
 
+.card {
+    width: calc(25% - 15px); /* Set width for each card (25% minus margin) */
+    margin-right: 15px; /* Adjust spacing between cards */
+    margin-bottom: 20px; /* Adjust spacing between rows */
+}
+
+/* Optional: Adjust card width */
+@media (max-width: 992px) {
+    .card {
+        width: calc(33.33% - 15px); /* Set width for each card on smaller screens */
+    }
+}
+
+@media (max-width: 768px) {
+    .card {
+        width: calc(50% - 15px); /* Set width for each card on smaller screens */
+    }
+}
+
+@media (max-width: 576px) {
+    .card {
+        width: 100%; /* Set width for each card on extra small screens */
+        margin-right: 0; /* Remove right margin on extra small screens */
+    }
+}
 .card-body .btn-primary{
     background: #593021;
     border: 1px solid #593021;
 }
-/* .cat1{
-    display: flex;
-} */
+
+
 footer{
     display: flex;
-    flex-wrap: wrap;
+    /* flex-wrap: wrap; */
     justify-content: space-between;
     font-family: sans-serif;
     background-color:#d3dbddac;

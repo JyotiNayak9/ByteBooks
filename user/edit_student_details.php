@@ -16,7 +16,7 @@ if(isset($_POST['submit']))
     $phone=$_POST['phone'];
     // $password=$_POST['password'];
 
-$sql1="update users set full_name='$name', course='$course', email='$email', phone='$phone',  where id='$id'";
+$sql1="update users set full_name='$name', course='$course', email='$email', phone='$phone',  where user_id='$id'";
 $result = mysqli_query($conn,$sql1);
 if($result === TRUE){
 echo "<script type='text/javascript'>alert('Success')</script>";

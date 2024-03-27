@@ -32,10 +32,12 @@ if (session_status() == PHP_SESSION_NONE) {
                   <?php
                   $sql = "select * from category";
                   $result = mysqli_query($conn,$sql);
-                  if ($row= $result->fetch_assoc()){
+                  while($row= $result->fetch_assoc()){
                   ?>
                     <a class="catr" href=""><?php echo $row['cat_name'] ?></a>
-                 <?php } ?>
+                 <?php 
+                  }
+                 ?>
                 </div>
             </li>
             <!-- <li><a href="#">ContactUs</a></li> -->
@@ -63,16 +65,16 @@ if (session_status() == PHP_SESSION_NONE) {
   </div>
 </header>
 
-
+<!-- 
 <section class="banner">
 <h4>Offer!!</h4>
 <h2>Upto <span>5 % Off</span> - On Premium subscription</h2>
 <button>Subscribe Now</button>
-</section>
+</section> -->
 <section class="Categories">
   <div class="cat-row">
     <div class="cat-header">
-      <h2>ByteBooks Features</h2>
+      <h2>Books Available</h2>
       <!-- <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem culpa, quidem magni quasi deleniti modi, odit nisi molestias architecto eius reiciendis porro laudantium dolore dolorem. Quam eum ex consectetur sunt.</p> -->
     </div>
     <div class="cat1">

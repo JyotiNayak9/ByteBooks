@@ -131,6 +131,7 @@ if(is_admin_login()){
                                         <td><center>
                                             <a href="bookdetails.php?id=<?php echo $bookid; ?>" class="btn btn-primary">Details</a>
                                             <a href="edit_book_details.php?id=<?php echo $bookid; ?>" class="btn btn-success">Edit</a>
+                                            <a href="delete_book.php?id=<?php echo $bookid; ?>" class="btn btn-danger">Delete</a>
                                         </center></td>
                                     </tr>
                                <?php }} ?>
