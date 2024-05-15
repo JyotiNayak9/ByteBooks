@@ -32,7 +32,7 @@ if(is_admin_login()){
                                 <img src="images/user.png" class="nav-avatar" />
                                 <b class="caret"></b></a>
                                 <ul class="dropdown-menu">
-                                    <li><a href="user_dashboard.php">Your Profile</a></li>
+                                    <li><a href="admin_dashboard.php">Your Profile</a></li>
                                     <li class="divider"></li>
                                     <li><a href="logout.php">Logout</a></li>
                                 </ul>
@@ -145,7 +145,7 @@ if(is_admin_login()){
         </div>
 <div class="footer">
             <div class="container">
-                <b class="copyright">&copy; 2018 Library Management System </b>All rights reserved.
+                <!-- <b class="copyright">&copy; 2018 Library Management System </b>All rights reserved. -->
             </div>
         </div>
         

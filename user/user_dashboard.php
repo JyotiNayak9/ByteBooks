@@ -107,7 +107,7 @@ if(!is_user_login()){
         </div>
 <div class="footer">
             <div class="container">
-                <b class="copyright">&copy; 2024 Library Management System </b>All rights reserved.
+                <b class="copyright">&copy; 2024 ByteBooks Library Management System </b>All rights reserved.
             </div>
         </div>
         

@@ -18,11 +18,15 @@ if(is_admin_login()){
         <link type="text/css" href="../user/css/theme.css" rel="stylesheet">
         <link rel="stylesheet" href="../user/home.css">
         <link type="text/css" href="images/icons/css/font-awesome.css" rel="stylesheet">
-        <link type="text/css" href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,400,600'
-            rel='stylesheet'>
-            <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link type="text/css" href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,400,600' rel='stylesheet'>
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Protest+Riot&display=swap" rel="stylesheet">
-    </head>
+<style>
+	.add{
+		margin-top: 20px;
+	}
+</style>    
+</head>
     <body>
     <div class="navbar navbar-fixed-top">
             <nav class="navbar">
@@ -68,89 +72,82 @@ if(is_admin_login()){
                         <!--/.sidebar-->
                     </div>
                     <!--/.span3-->
-                    
-                    <div class="span9">
-                        <form class="form-horizontal row-fluid" action="current.php" method="post">
-                                        <div class="control-group">
+					<div class="span9">
+                  <!-- <form class="form-horizontal row-fluid" action="reg_author.php" method="post">
+                                        <!-- <div class="control-group">
                                             <label class="control-label" for="Search"><b>Search:</b></label>
                                             <div class="controls">
-                                                <input type="text" id="title" name="title" placeholder="Enter Roll No of Student/Book Name/Book Id." class="span8" required>
+                                                <input type="text" id="title" name="title" placeholder="Enter Name/ID of book" class="span8" required>
                                                 <button type="submit" name="submit"class="btn">Search</button>
                                             </div>
-                                        </div>
-                                    </form>
-                                    <br>
-                                    <?php
-                                    if(isset($_POST['submit']))
+                                        </div> -->
+                                     
+                                    <!-- </form>  -->
+                                    <!-- <br> -->
+                                    <!-- <php -->
+                                    <!-- if(isset($_POST['submit']))
                                         {$s=$_POST['title'];
-                                            $sql="select record.book_num,user_id,book_name,due_date,date_of_issue,datediff(curdate(),Due_Date) as x from record,book where (date_of_issue is NOT NULL and date_of_return is NULL and book.book_num = record.book_num) and (user_id='$s' or record.book_num='$s' or Title like '%$s%')";
+                                            $sql="select * from books where book_num='$s' or book_name like '%$s%'";
                                         }
                                     else
-                                        $sql="select record.book_num,user_id,book_name,due_date,date_of_issue,datediff(curdate(),Due_Date) as x from record,book where date_of_issue is NOT NULL and date_of_return is NULL and book.book_num = record.book_num";
+                                        $sql="select * from books where book.author == ";
+
                                     $result=$conn->query($sql);
                                     $rowcount=mysqli_num_rows($result);
 
                                     if(!($rowcount))
                                         echo "<br><center><h2><b><i>No Results</i></b></h2></center>";
                                     else
-                                    {
+                                    { -->
 
                                     
-                                    ?>
+                                    <!-- ?> -->
                         <table class="table" id = "tables">
                                   <thead>
                                     <tr>
-                                      <th>User ID</th>  
-                                      <th>Book id</th>
+                                      <th>Book ID</th>
                                       <th>Book name</th>
-                                      <th>Issue Date</th>
-                                      <th>Due date</th>
-                                      <th>Dues</th>
+
                                     </tr>
                                   </thead>
                                   <tbody>
+                                    <?php
+                            // $x= $_GET['id'];
+                            $y = $_GET['name'];
+                            $sql = "select * from book where book.author= '$y'";
+                            $result=$conn->query($sql);
+                            $rowcount=mysqli_num_rows($result);
 
-                                <?php
-
-                            
-
-                            //$result=$conn->query($sql);
                             while($row=$result->fetch_assoc())
                             {
-                                $rollno=$row['user_id'];
-                                $bookid=$row['book_num'];
+                                $id=$row['book_num'];
                                 $name=$row['book_name'];
-                                $issuedate=$row['date_of_issue'];
-                                $duedate=$row['due_date'];
-                                $dues=$row['x'];
+                     
                             
+                           
                             ?>
-
                                     <tr>
-                                      <td> <a href="studentdetails.php?id=<?php echo $rollno; ?>" ><?php echo strtoupper($rollno) ?></a></td>
-                                      <td><?php echo $bookid ?></td>
-                                      <td><?php echo $name ?></td>
-                                      <td><?php echo $issuedate ?></td>
-                                      <td><?php echo $duedate ?></td>
-                                      <td><?php if($dues > 0)
-                                                  echo "<font color='red'>".$dues."</font>";
-                                                else
-                                                  echo "<font color='green'>0</font>";
-                                              ?>
+                                      <td><a a style="color:black;"   href="bookdetails.php?id=<?php echo $id;?>"><?php echo $id?></a> </td>
+                                      <td><a a style="color:black;" href="bookdetails.php?id=<?php echo $id;?>"><?php echo $name ?></a></td>
+                                      
                                     </tr>
-                            <?php }} ?>
-                                    </tbody>
+                               <?php }?>
+                               </tbody>
                                 </table>
-                    </div>
-
+								<!-- <div class="add"><center><a href="add_author.php"class="btn btn-primary">Add Author</a></center></div> -->
+								
+							
+                            </div>
                     <!--/.span9-->
+					
                 </div>
+			
             </div>
             <!--/.container-->
         </div>
 <div class="footer">
             <div class="container">
-                <!-- <b class="copyright">&copy; 2024 ByteBooks Library Management System </b>All rights reserved. -->
+                <b class="copyright">&copy; 2024 ByteBooks Library Management System </b>All rights reserved.
             </div>
         </div>
         

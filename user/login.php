@@ -50,7 +50,7 @@
                 $_SESSION['email'] = $data['email'];
                 $_SESSION['user_name'] = $data['full_name'];
                 $_SESSION['user_id']=$data['id'];
-                header('location:user_index.php');
+                header('location:user_dashboard.php');
                 echo"<script>alert('Login successful')</script>";
                 exit();
             } else {
@@ -124,7 +124,7 @@ if(isset($_POST['adminlogin'])){
                 <input type="text" class="form-control" name="email" placeholder="Email"><br>
 </div>
 <div class="form-group">
-                <input type="text" class="form-control" name="password" class="form control" placeholder="Password"><br>
+                <input type="password" class="form-control" name="password" class="form control" placeholder="Password"><br>
 </div>
 <div class="form-btn">
     <input type="submit" class="btn btn-primary" value="Login as user" name="userlogin"><br>

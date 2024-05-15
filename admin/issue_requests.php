@@ -82,7 +82,6 @@ if(is_admin_login()){
                                       <th>Book Id</th>
                                       <th>Book Name</th>
                                       <th>Availabilty</th>
-                                      <th></th>
                                     </tr>
                                   </thead>
                                   <tbody>
@@ -99,7 +98,7 @@ if(is_admin_login()){
                                 
                             ?>
                                     <tr>
-                                      <td><?php echo strtoupper($rollno) ?></td>
+                                      <td> <a href="studentdetails.php?id=<?php echo $rollno; ?> "><?php echo strtoupper($rollno) ?></a></td>
                                       <td><?php echo $bookid ?></td>
                                       <td><b><?php echo $name ?></b></td>
                                       <td><?php echo $avail ?></td>
@@ -123,7 +122,7 @@ if(is_admin_login()){
         </div>
 <div class="footer">
             <div class="container">
-                <b class="copyright">&copy; 2018 Library Management System </b>All rights reserved.
+                <b class="copyright">&copy; 2024 ByteBooks Library Management System </b>All rights reserved.
             </div>
         </div>
         

@@ -126,7 +126,7 @@ if (is_user_login()) {
                                             <td>
                                                 <?php echo $bookid ?>
                                             </td>
-                                            <td>  <td><img src="../images/<?php echo $row['image']; ?>" width="100" height="100"></td> </td>
+                                            <td><img src="../images/<?php echo $row['image']; ?>" width="100" height="100"></td> </td>
                                             <td>
                                                 <?php echo $name ?>
                                             </td>

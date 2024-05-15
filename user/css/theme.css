@@ -1511,6 +1511,7 @@ filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#fff5f5f5', end
 .datatable-pagination>a span {
 	display: none
 }
+
 .chart .legend table {
 	color: inherit!important;
 	font-size: 11px!important

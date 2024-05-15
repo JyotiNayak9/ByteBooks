@@ -123,8 +123,8 @@ if(is_admin_login()){
                            
                             ?>
                                     <tr>
-                                      <td><?php echo $authorid ?></td>
-                                      <td><?php echo $name ?></td>
+                                      <td><a a style="color:black;"  href="author_details.php?name=<?php echo $name;?>"><?php echo $authorid ?></a> </td>
+                                      <td><a a style="color:black;" href="author_details.php?name=<?php echo $name;?>"><?php echo $name ?></a></td>
                                       
                                         <td><center>
                                             <a href="edit_author.php?id=<?php echo $authorid; ?>" class="btn btn-primary">Edit</a>

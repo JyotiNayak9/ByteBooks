@@ -123,8 +123,8 @@ if(is_admin_login()){
                            
                             ?>
                                     <tr>
-                                      <td><?php echo $catid ?></td>
-                                      <td><?php echo $name ?></td>
+                                      <td><a a style="color:black;" href="cat_details.php?name=<?php echo $name;?>"><?php echo $catid ?></a></td>
+                                      <td><a a style="color:black;" href="cat_details.php?name=<?php echo $name;?>"><?php echo $name ?></a></td>
                                       
                                         <td><center>
                                             <a href="edit_cat.php?catid=<?php echo $catid; ?>" class="btn btn-primary">Edit</a>

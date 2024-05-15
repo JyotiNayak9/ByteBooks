@@ -32,14 +32,14 @@ if (session_status() == PHP_SESSION_NONE) {
                   <?php
                   $sql = "select * from category";
                   $result = mysqli_query($conn,$sql);
-                  while($row= $result->fetch_assoc()){
-                  ?>
-                    <a class="catr" href=""><?php echo $row['cat_name'] ?></a>
-                 <?php 
-                  }
-                 ?>
+                  while ($row = $result->fetch_assoc()) {
+                    $id = $row['cat_id'];
+                    ?>
+                    
+                    <a class="catr" href="view_cat.php?id=<?php echo $id ?>"><?php echo $row['cat_name'] ?></a>
+                  <?php } ?>
                 </div>
-            </li>
+              </li>
             <!-- <li><a href="#">ContactUs</a></li> -->
             <li><a href="about.php">About</a></li>
             <li><a href="user_dashboard.php"><i class="fa-solid fa-user"></i></a></li>

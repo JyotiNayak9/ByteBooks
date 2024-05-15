@@ -181,7 +181,7 @@ if (is_admin_login()) {
 
         <div class="footer">
             <div class="container">
-                <b class="copyright">&copy; 2018 Library Management System </b>All rights reserved.
+                <!-- <b class="copyright">&copy; 2018 Library Management System </b>All rights reserved. -->
             </div>
         </div>
 
@@ -195,9 +195,6 @@ if (is_admin_login()) {
         <script src="scripts/common.js" type="text/javascript"></script>
 
         <?php
-
-
-
     if(isset($_POST['submit'])) {
         $book_num = $_POST['book_num'];
         $title = $_POST['title'];
