@@ -124,7 +124,7 @@ echo "<script type='text/javascript'>alert('Error')</script>";
         </div>
 <div class="footer">
             <div class="container">
-                <b class="copyright">&copy; 2018 Library Management System </b>All rights reserved.
+                <b class="copyright">&copy; 2024 ByteBooks Library Management System </b>All rights reserved.
             </div>
         </div>
         </body>
@@ -138,6 +138,9 @@ echo "<script type='text/javascript'>alert('Error')</script>";
         <script src="scripts/datatables/jquery.dataTables.js" type="text/javascript"></script>
         <script src="scripts/common.js" type="text/javascript"></script>
 <?php
+}
+else{
+    header("location:login.php")
 }
 ?>
  

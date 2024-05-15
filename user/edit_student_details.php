@@ -16,11 +16,11 @@ if(isset($_POST['submit']))
     $phone=$_POST['phone'];
     // $password=$_POST['password'];
 
-$sql1="update users set full_name='$name', course='$course', email='$email', phone='$phone',  where user_id='$id'";
+$sql1="update users set full_name='$name', course='$course', email='$email', phone='$phone'  where users.id='$id'";
 $result = mysqli_query($conn,$sql1);
 if($result === TRUE){
 echo "<script type='text/javascript'>alert('Success')</script>";
-header( "Refresh:0.01; url=index.php", true, 303);
+header( "Refresh:0.01; url=user_dashboard.php", true, 303);
 }
 else
 {//echo $conn->error;
@@ -170,7 +170,7 @@ echo "<script type='text/javascript'>alert('Error')</script>";
         </div>
 <div class="footer">
             <div class="container">
-                <b class="copyright">&copy; 2018 Library Management System </b>All rights reserved.
+                <b class="copyright">&copy; 2024 ByteBooks Library Management System </b>All rights reserved.
             </div>
         </div>
         </body>
@@ -184,6 +184,8 @@ echo "<script type='text/javascript'>alert('Error')</script>";
         <script src="scripts/datatables/jquery.dataTables.js" type="text/javascript"></script>
         <script src="scripts/common.js" type="text/javascript"></script>
 <?php
+}else{
+    header("location:login.php");
 }
 ?>
  

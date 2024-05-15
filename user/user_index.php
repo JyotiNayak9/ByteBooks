@@ -34,9 +34,10 @@ if (session_status() == PHP_SESSION_NONE) {
                   $result = mysqli_query($conn,$sql);
                   while ($row = $result->fetch_assoc()) {
                     $id = $row['cat_id'];
+                    $name =$row['cat_name']
                     ?>
                     
-                    <a class="catr" href="view_cat.php?id=<?php echo $id ?>"><?php echo $row['cat_name'] ?></a>
+                    <a class="catr" href="view_cat.php?name=<?php echo $name ?>"><?php echo $row['cat_name'] ?></a>
                   <?php } ?>
                 </div>
               </li>
@@ -80,23 +81,20 @@ if (session_status() == PHP_SESSION_NONE) {
     <div class="cat1">
     <div class="cat-books">
         <?php
-        // Fetch all books from the database
         $sql = "SELECT * FROM book";
         $result = $conn->query($sql);
-
-        // Check if there are any books
         if ($result->num_rows > 0) {
-            // Loop through each book and display it
             while ($row = $result->fetch_assoc()) {
                 ?>
-                <div class="card" style="width: 18rem;">
-                    <img src="../images/<?php echo $row['image']; ?>" class="card-img-top" alt="Book Image">
-                    <div class="card-body">
-                        <h5 class="card-title"><?php echo $row['book_name']; ?></h5>
-                        <!-- <p class="card-text"><?php echo $row['']; ?></p> -->
-                        <a href="bookdetails.php?id=<?php echo $row['book_num'];?>" class="btn btn-primary">Explore more</a>
-                    </div>
+                 <div class="pro1">
+                <!-- <div class="card" style="width: 18rem;"> -->
+                  <img src="../images/<?php echo $row['image']; ?>" class="card-img-top" alt="Book Image">
+                  <div class="des">
+                    <h5 ><?php echo $row['book_name']; ?></h5>
+                    <a href="bookdetails.php?id=<?php echo $row['book_num']; ?>" class="btn btn-primary">Explore more</a>
+                  </div>
                 </div>
+                <!-- </div> -->
                 <?php
             }
         } else {

@@ -173,5 +173,5 @@ if (is_user_login()) {
 
 <?php }
 else {
-    echo "<script type='text/javascript'>alert('Access Denied!!!')</script>";
+    header("location:login.php");
 } ?>

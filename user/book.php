@@ -173,7 +173,7 @@ if (is_user_login()) {
         <!--/.container-->
         <div class="footer">
             <div class="container">
-                <b class="copyright">&copy; 2018 Library Management System </b>All rights reserved.
+                <b class="copyright">&copy; 2024 ByteBooks Library Management System </b>All rights reserved.
             </div>
         </div>
 
@@ -191,6 +191,5 @@ if (is_user_login()) {
     </html>
 
 <?php } else {
-    echo "<script type='text/javascript'>alert('Access Denied!!!')</script>";
     header('location:login.php');
 } ?>

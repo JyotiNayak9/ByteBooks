@@ -47,9 +47,10 @@ include '../db.php';
                 $result = mysqli_query($conn, $sql);
                 while ($row = $result->fetch_assoc()) {
                   $id = $row['cat_id'];
+                  $name = $row['cat_name'];
                   ?>
                   
-                  <a class="catr" href="view_cat.php?id=<?php echo $id ?>"><?php echo $row['cat_name'] ?></a>
+                  <a class="catr" href="view_cat.php?name=<?php echo $name ?>"><?php echo $row['cat_name'] ?></a>
                 <?php } ?>
               </div>
             </li>
@@ -79,134 +80,27 @@ include '../db.php';
         </nav>
         <section id="products">
     <div class="pro-container">
-    <div class="pro1">
-        <img src="images/Fasttrack.jpg" alt="">
-        <div class="des">
-            <span>Fasttrack</span>
-            <h5>Fastrack Analog Unisex-Adult Watch</h5>
-            <div class="star">
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-            </div>
-            <h4>$8.50</h4>
-        </div>
-        <a href="#" ><i class="fa-solid fa-cart-shopping fa-1x"></i></a>
+  
+    <?php
+                $x = $_GET['name'];
+                $sql = "select * from book where book.category = '$x' ";
+                $result = mysqli_query($conn, $sql);
+
+            if ($result->num_rows > 0) {
+              while ($row = $result->fetch_assoc()) {
+                ?> 
+                <div class="pro1">
+                  <img src="../images/<?php echo $row['image']; ?>" class="card-img-top" alt="Book Image">
+                  <div class="des">
+                    <h5 ><?php echo $row['book_name']; ?></h5>
+                    <a href="bookdetails.php?id=<?php echo $row['book_num']; ?>" class="btn btn-primary">Explore more</a>
+                  </div>
+                </div>
+                <?php
+              }
+            }else {
+                echo ("No books found");
+            }
+            ?>
     </div>
-    <div class="pro1">
-        <img src="images/Timex.jpg" alt="">
-        <div class="des">
-            <span>Timex</span>
-            <h5>TIMEX Analog Men's Watch (Dial Colored Strap)</h5>
-            <div class="star">
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-            </div>
-            <h4>$9.57</h4>
-        </div>
-        <a href="#" ><i class="fa-solid fa-cart-shopping fa-1x"></i></a>
-    </div>
-    <div class="pro1">
-        <img src="images/Fossil.jpg" alt="">
-        <div class="des">
-            <span>Fossil</span>
-            <h5>Fossil Analog Rose Gold Dial Women's Watch</h5>
-            <div class="star">
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-            </div>
-            <h4>$71.97</h4>
-        </div>
-        <a href="#" ><i class="fa-solid fa-cart-shopping "></i></a>
-    </div>
-    <div class="pro1">
-        <img src="images/Casio.jpg" alt="">
-        <div class="des">
-            <span>Casio</span>
-            <h5> Casio Edifice Chronograph Black Dial Men's Watch</h5>
-            <div class="star">
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-            </div>
-            <h4>$109.95</h4>
-        </div>
-        <a href="#" ><i class="fa-solid fa-cart-shopping fa-1x"></i></a>
-    </div>
-    <div class="pro1">
-        <img src="images/sonata.jpg" alt="">
-        <div class="des">
-            <span>Sonata</span>
-            <h5>SF Sporty Analog Black Dial Men's Watch</h5>
-            <div class="star">
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-            </div>
-            <h4>$6.25</h4>
-        </div>
-        <a href="#" ><i class="fa-solid fa-cart-shopping fa-1x"></i></a>
-    </div>
-    <div class="pro1">
-        <img src="images/timewear.jpg" alt="">
-        <div class="des">
-            <span>Timewear</span>
-            <h5>TIMEWEAR Analogue - Digital Men's Watch</h5>
-            <div class="star">
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-            </div>
-            <h4>$5.49</h4>
-        </div>
-        <a href="#" ><i class="fa-solid fa-cart-shopping fa-1x"></i></a>
-    </div>
-    <div class="pro1">
-        <img src="images/fasttracksmart.jpg" alt="">
-        <div class="des">
-            <span>Fasttrack</span>
-            <h5>Fastrack New Limitless FS1 Smart Watch</h5>
-            <div class="star">
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-            </div>
-            <h4>$17.95</h4>
-        </div>
-        <a href="#" ><i class="fa-solid fa-cart-shopping fa-1x"></i></a>
-    </div>
-    <div class="pro1">
-        <img src="images/fossildigital.jpg" alt="">
-        <div class="des">
-            <span>Fossil</span>
-            <h5>Fossil Gen 6 Digital Black Dial Men's Watch</h5>
-            <div class="star">
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-            </div>
-            <h4>$239.95</h4>
-        </div>
-        <a href="#" ><i class="fa-solid fa-cart-shopping fa-1x"></i></a>
-    </div>
-    </div>
-    </section>
         
