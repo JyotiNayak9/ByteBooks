@@ -61,7 +61,7 @@ if (is_user_login()) {
                 <button class="dropbtn1"><i class="fa-solid fa-user"></i></button>
                 <div class="dropdown-content1">
                   <a href="login.php">Login as User</a>
-                  <a href="login.php">Login as Admin</a>
+                  <a href="admin_login.php">Login as Admin</a>
                 </div>
               </div>
               <?php
@@ -73,7 +73,7 @@ if (is_user_login()) {
             ?>
             </li>
         </div>
-        </li>
+        
 
         </ul>
         <!-- <div class="search">

@@ -63,49 +63,6 @@
     }
 }
 
-$message='';
-if(isset($_POST['adminlogin'])){
-    
-    $admin_email=$_POST['admin_email'];
-    $admin_password = $_POST['admin_password'];
-    if(empty($_POST["admin_email"]))
-    {
-        $message .= '<li>Enter Email address </li>';
-    }
-    else{
-        if(!filter_var($_POST["admin_email"],FILTER_VALIDATE_EMAIL))
-    {
-        $message .='<li>Invalid Email Address</li>';
-    }
- 
-    }
-    if(empty($_POST['admin_password'])){
-        $message .= '<li>Enter your password</li>';
-    }
-   
-    if($message == ''){
-        
-            $sql = "SELECT * FROM admin WHERE admin_email='$admin_email'";
-            $result = mysqli_query($conn, $sql);
-            $data = mysqli_fetch_assoc($result);
-        
-        
-            if ($data) {
-                if ($data['password'] == $admin_password) {
-                    $_SESSION['admin_id'] = $data['admin_id'];
-                    $_SESSION['admin_email'] = $data['admin_email'];
-                  
-                    header('location:../admin/admin_dashboard.php');
-                    exit;
-                } else {
-                    $message = '<li>Wrong Password</li>';
-                }
-            }else{
-                $message = '<li>Wrong Email Address</li>';
-            }
-        }
-    }
-
 ?> 
 
 <div class="blur-bg"></div>
@@ -132,25 +89,7 @@ if(isset($_POST['adminlogin'])){
 <span>Not registered yet?<a href="register.php">Register Here</a></span>
 </form>
     </div>
-<div class="container">
-        <?php
-        if($message != '')
-        {
-            echo'<div class="alert alert-danger"><ul>'.$message.'</ul></div>';
-        }
-        ?>
-        <form action="login.php" method="POST">
-<div class="form-group">
-                <input type="text" class="form-control" name="admin_email" placeholder="Admin Email"><br>
-</div>
-<div class="form-group">
-                <input type="password" class="form-control" name="admin_password" class="form control" placeholder="Password"><br>
-</div>
-<div class="form-btn">
-    <input type="submit" class="btn btn-primary" value="Login as admin" name="adminlogin">
-</div>
-        </form>
-</div>
+
 </div>
 </body>
 </html>

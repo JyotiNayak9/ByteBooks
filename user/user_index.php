@@ -43,9 +43,27 @@ if (session_status() == PHP_SESSION_NONE) {
               </li>
             <!-- <li><a href="#">ContactUs</a></li> -->
             <li><a href="about.php">About</a></li>
-            <li><a href="user_dashboard.php"><i class="fa-solid fa-user"></i></a></li>
+            <li>
+              <?php
+            if(!is_user_login()){
+              ?>
+              <div class="dropdown1">
+                <button class="dropbtn1"><i class="fa-solid fa-user"></i></button>
+                <div class="dropdown-content1">
+                  <a href="login.php">Login as User</a>
+                  <a href="admin_login.php">Login as Admin</a>
                 </div>
+              </div>
+              <?php
+            }else{
+              ?>
+              <li><a href="user_dashboard.php"><i class="fa-solid fa-user"></i></a></li>
+              <?php
+            }
+            ?>
             </li>
+                </div>
+        
           
         </ul>
         <!-- <div class="search">
