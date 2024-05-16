@@ -70,37 +70,17 @@ if(is_admin_login()){
                     <!--/.span3-->
                     
                     <div class="span9">
-                        <form class="form-horizontal row-fluid" action="current.php" method="post">
-                                        <div class="control-group">
-                                            <label class="control-label" for="Search"><b>Search:</b></label>
-                                            <div class="controls">
-                                                <input type="text" id="title" name="title" placeholder="Enter Roll No of Student/Book Name/Book Id." class="span8" required>
-                                                <button type="submit" name="submit"class="btn">Search</button>
-                                            </div>
-                                        </div>
-                                    </form>
-                                    <br>
+                    <h1><i>Currently Issued Books</i></h1>
                                     <?php
-                                    if(isset($_POST['submit']))
-                                        {$s=$_POST['title'];
-                                            $sql="select record.book_num,user_id,book_name,due_date,date_of_issue,datediff(curdate(),Due_Date) as x from record,book where (date_of_issue is NOT NULL and date_of_return is NULL and book.book_num = record.book_num) and (user_id='$s' or record.book_num='$s' or Title like '%$s%')";
-                                        }
-                                    else
-                                        $sql="select record.book_num,user_id,book_name,due_date,date_of_issue,datediff(curdate(),Due_Date) as x from record,book where date_of_issue is NOT NULL and date_of_return is NULL and book.book_num = record.book_num";
+                                    $id = $_GET['uid'];
+                                        $sql="select record.book_num,user_id,book_name,due_date,date_of_issue,datediff(curdate(),Due_Date) as x from record,book where date_of_issue is NOT NULL and date_of_return is NULL and book.book_num = record.book_num and user_id = '$id'";
                                     $result=$conn->query($sql);
-                                    $rowcount=mysqli_num_rows($result);
-
-                                    if(!($rowcount))
-                                        echo "<br><center><h2><b><i>No Results</i></b></h2></center>";
-                                    else
-                                    {
-
-                                    
+                                    $rowcount=mysqli_num_rows($result);                                   
                                     ?>
                         <table class="table" id = "tables">
                                   <thead>
                                     <tr>
-                                      <th>User ID</th>  
+    
                                       <th>Book id</th>
                                       <th>Book name</th>
                                       <th>Issue Date</th>
@@ -117,7 +97,7 @@ if(is_admin_login()){
                             //$result=$conn->query($sql);
                             while($row=$result->fetch_assoc())
                             {
-                                $rollno=$row['user_id'];
+     
                                 $bookid=$row['book_num'];
                                 $name=$row['book_name'];
                                 $issuedate=$row['date_of_issue'];
@@ -127,7 +107,6 @@ if(is_admin_login()){
                             ?>
 
                                     <tr>
-                                      <td> <a href="studentdetails.php?id=<?php echo $rollno; ?>" ><?php echo strtoupper($rollno) ?></a></td>
                                       <td><?php echo $bookid ?></td>
                                       <td><?php echo $name ?></td>
                                       <td><?php echo $issuedate ?></td>
@@ -138,7 +117,54 @@ if(is_admin_login()){
                                                   echo "<font color='green'>0</font>";
                                               ?>
                                     </tr>
-                            <?php }} ?>
+                            <?php } ?>
+                                    </tbody>
+                                </table>
+
+<br><br>
+                                <h1><i>Previously Returned Books</i></h1>
+                                    <?php
+                                    $id = $_GET['uid'];
+                                    $sql="select * from record,book where user_id = '$id' and date_of_issue is NOT NULL and date_of_return != 0000-00-00 and book.book_num = record.book_num ";
+                                    $result=$conn->query($sql);
+                                    $rowcount=mysqli_num_rows($result);                                   
+                                    ?>
+                        <table class="table" id = "tables">
+                                  <thead>
+                                    <tr>
+    
+                                      <th>Book id</th>
+                                      <th>Book name</th>
+                                      <th>Issue Date</th>
+                                      <th>Return Date</th>
+                                    </tr>
+                                  </thead>
+                                  <tbody>
+
+                                <?php
+
+
+
+                            //$result=$conn->query($sql);
+                            while($row=$result->fetch_assoc())
+                            {
+     
+                                $bookid=$row['book_num'];
+                                $name=$row['book_name'];
+                                $issuedate=$row['date_of_issue'];
+                                $returndate=$row['date_of_return'];
+                                
+                            
+                            ?>
+
+                                    <tr>
+                                      <td><?php echo $bookid ?></td>
+                                      <td><?php echo $name ?></td>
+                                      <td><?php echo $issuedate ?></td>
+                                      <td><?php echo $returndate ?></td>
+                                     
+                                    </tr>
+                            <?php } ?>
                                     </tbody>
                                 </table>
                     </div>
@@ -150,7 +176,7 @@ if(is_admin_login()){
         </div>
 <div class="footer">
             <div class="container">
-                <!-- <b class="copyright">&copy; 2024 ByteBooks Library Management System </b>All rights reserved. -->
+                <b class="copyright">&copy; 2024 ByteBooks Library Management System </b>All rights reserved.
             </div>
         </div>
         
@@ -168,7 +194,8 @@ if(is_admin_login()){
 </html>
 
 
-<?php }
+<?php 
+}
 else {
     header("location:admin_login.php");
 } ?>

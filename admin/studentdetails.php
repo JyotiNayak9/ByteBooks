@@ -95,7 +95,8 @@ if(is_admin_login()){
                                 echo "<b><u>Mobile No:</u></b> ".$mobno."<br><br>"; 
                             ?>
                             
-                        <a href="student.php" class="btn btn-primary">Go Back</a>                             
+                        <a href="student.php" class="btn btn-primary">Go Back</a>    
+                        <a href="student_transaction.php?uid=<?php echo $row['id']; ?>" class="btn btn-primary">Veiw books transactions</a>                         
                                </div>
                            </div>
                         </div>

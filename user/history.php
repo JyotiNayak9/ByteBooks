@@ -87,11 +87,11 @@ if (is_user_login()) {
                                     $id = $_SESSION['user_id'];
                                     if(isset($_POST['submit']))
                                         {$s=$_POST['title'];
-                                            $sql="select * from record,book where user_id = '$id' and date_of_issue is NOT NULL and date_of_return is NOT NULL and book.book_num = record.book_num and (record.book_num='$s' or book_name like '%$s%')";
+                                            $sql="select * from record,book where user_id = '$id' and date_of_issue is NOT NULL and date_of_return != 0000-00-00 and book.book_num = record.book_num and (record.book_num='$s' or book_name like '%$s%')";
 
                                         }
                                     else
-                                        $sql="select * from record,book where user_id = '$id' and date_of_issue is NOT NULL and date_of_return is NOT NULL and book.book_num = record.book_num ";
+                                        $sql="select * from record,book where user_id = '$id' and date_of_issue is NOT NULL and date_of_return != 0000-00-00 and book.book_num = record.book_num ";
 
                                     $result=$conn->query($sql);
                                     $rowcount=mysqli_num_rows($result);
@@ -141,7 +141,7 @@ if (is_user_login()) {
         </div>
 <div class="footer">
             <div class="container">
-                <b class="copyright">&copy; 2018 Library Management System </b>All rights reserved.
+                <b class="copyright">&copy; 2024 ByteBooks Library Management System </b>All rights reserved.
             </div>
         </div>
         
