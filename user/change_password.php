@@ -140,7 +140,7 @@ echo "<script type='text/javascript'>alert('Error')</script>";
 <?php
 }
 else{
-    header("location:login.php")
+    header("location:login.php");
 }
 ?>
  

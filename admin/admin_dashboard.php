@@ -109,7 +109,7 @@ if(is_admin_login()){
         </div>
 <div class="footer">
             <div class="container">
-                <!-- <b class="copyright">&copy; 2018 Library Management System </b>All rights reserved. -->
+                <!-- <b class="copyright">&copy; 2024 ByteBooks Library Management System </b>All rights reserved. -->
             </div>
         </div>
         
@@ -130,5 +130,5 @@ if(is_admin_login()){
 <?php 
 }
 else {
-    echo "<script type='text/javascript'>alert('Access Denied!!!')</script>";
+header('location: ../user/admin_login.php');
 } ?>

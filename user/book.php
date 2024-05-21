@@ -61,6 +61,8 @@ if (is_user_login()) {
                                 <li><a href="message.php"><i class="menu-icon icon-inbox"></i>Messages</a>
                                 </li>
                                 <li><a href="book.php"><i class="menu-icon icon-book"></i>All Books </a></li>
+                                <!-- <li><a href="../admin/reg_cat.php"><i class="menu-icon icon-edit"></i>Categories </a></li>
+                                <li><a href="../admin/reg_author.php"><i class="menu-icon icon-edit"></i>Authors </a></li> -->
                                 <li><a href="history.php"><i class="menu-icon icon-tasks"></i>Previously Borrowed Books </a>
                                 </li>
                                 <li><a href="current.php"><i class="menu-icon icon-list"></i>Currently Issued Books </a>

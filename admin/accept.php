@@ -5,7 +5,7 @@ $bookid=$_GET['id1'];
 $rollno=$_GET['id2'];
 
 
-$sql1="update record set date_of_issue=curdate(),due_date=date_add(curdate(),interval 15 day),renewal_left=1 where Book_num='$bookid' and user_id='$rollno'";
+$sql1="update record set date_of_issue=curdate(),due_date=date_add(curdate(),interval 1 day),renewal_left=1 where Book_num='$bookid' and user_id='$rollno'";
  
 if($conn->query($sql1) === TRUE)
 {$sql3="update book set availability=availability-1 where Book_num='$bookid'";

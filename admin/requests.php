@@ -111,5 +111,5 @@ if(is_admin_login()){
 
 <?php }
 else {
-    echo "<script type='text/javascript'>alert('Access Denied!!!')</script>";
+header("location:admin_login.php");
 } ?>

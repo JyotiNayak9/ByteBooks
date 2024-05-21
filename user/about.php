@@ -1,3 +1,7 @@
+<?php
+include 'function.php';
+include '../db.php';
+?>
 <!DOCTYPE html>
 <html lang="en">
 <!DOCTYPE html>
@@ -24,15 +28,23 @@
               <li class="dropdownn">
                 <a href="#" class="dropbtn">Categories</a>
                 <div class="dropdown-content">
-                    <a class="catr" href="category1.html">Category 1</a>
-                    <a class="catr" href="category2.html">Category 2</a>
-                    <a class="catr" href="category3.html">Category 3</a>
-                </div>
+                <?php
+                $sql = "select * from category";
+                $result = mysqli_query($conn, $sql);
+                while ($row = $result->fetch_assoc()) {
+                  $id = $row['cat_id'];
+                  $name = $row['cat_name']
+                  ?>
+                  
+                  <a class="catr" href="view_cat.php?name=<?php echo $name ?>"><?php echo $row['cat_name'] ?></a>
+                <?php } ?>
+              </div>
             </li>
             <!-- <li><a href="#">ContactUs</a></li> -->
             <li><a href="about.php">About</a></li>
             <li>
               <?php
+              
             if(!is_user_login()){
               ?>
               <div class="dropdown1">
@@ -54,10 +66,7 @@
            
           
         </ul>
-        <!-- <div class="search">
-          <input class="srch" type="search" name="" placeholder="Type to search ">
-          <i class="fa-solid fa-magnifying-glass"></i>
-      </div> -->
+      
       </div>
   </nav>
       
@@ -65,7 +74,6 @@
 
     <section class="about-section">
         <div class="container">
-            <!-- <h2>About Us</h2> -->
             <div class="content">
                 <div class="text">
                     <p>Welcome to ByteBooks, your ultimate destination for online reading and learning. We aim to provide a platform where readers can access a vast collection of books in various genres, all at the convenience of their fingertips.</p>
